@@ -48,8 +48,6 @@ Partial Class Form1
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.CacheListBackup = New System.Windows.Forms.ListBox()
         Me.FilterComboBox = New System.Windows.Forms.ComboBox()
-        Me.Resetlistbutton = New System.Windows.Forms.Button()
-        Me.SearchButton = New System.Windows.Forms.Button()
         Me.FilterLabel = New System.Windows.Forms.Label()
         Me.TotalFilesLabel = New System.Windows.Forms.Label()
         Me.CacheExplorerList = New System.Windows.Forms.ListBox()
@@ -61,6 +59,7 @@ Partial Class Form1
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.ImageDisplay = New System.Windows.Forms.PictureBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Panel1.SuspendLayout()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
@@ -250,9 +249,9 @@ Partial Class Form1
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(70, Byte), Integer))
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel2.Controls.Add(Me.AboutButton)
-        Me.Panel2.Controls.Add(Me.ChangeCacheFoldButton)
         Me.Panel2.Controls.Add(Me.CacheExplorerLabel)
         Me.Panel2.Controls.Add(Me.Logo)
+        Me.Panel2.Controls.Add(Me.ChangeCacheFoldButton)
         Me.Panel2.Controls.Add(Me.Panel4)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
@@ -268,7 +267,7 @@ Partial Class Form1
         Me.AboutButton.FlatAppearance.BorderSize = 0
         Me.AboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.AboutButton.ForeColor = System.Drawing.Color.Aqua
-        Me.AboutButton.Location = New System.Drawing.Point(616, -1)
+        Me.AboutButton.Location = New System.Drawing.Point(531, -1)
         Me.AboutButton.Name = "AboutButton"
         Me.AboutButton.Size = New System.Drawing.Size(84, 48)
         Me.AboutButton.TabIndex = 10
@@ -283,7 +282,7 @@ Partial Class Form1
         Me.ChangeCacheFoldButton.FlatAppearance.BorderSize = 0
         Me.ChangeCacheFoldButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ChangeCacheFoldButton.ForeColor = System.Drawing.Color.Aqua
-        Me.ChangeCacheFoldButton.Location = New System.Drawing.Point(531, -1)
+        Me.ChangeCacheFoldButton.Location = New System.Drawing.Point(616, -1)
         Me.ChangeCacheFoldButton.Name = "ChangeCacheFoldButton"
         Me.ChangeCacheFoldButton.Size = New System.Drawing.Size(84, 48)
         Me.ChangeCacheFoldButton.TabIndex = 10
@@ -339,8 +338,6 @@ Partial Class Form1
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel3.Controls.Add(Me.CacheListBackup)
         Me.Panel3.Controls.Add(Me.FilterComboBox)
-        Me.Panel3.Controls.Add(Me.Resetlistbutton)
-        Me.Panel3.Controls.Add(Me.SearchButton)
         Me.Panel3.Controls.Add(Me.FilterLabel)
         Me.Panel3.Controls.Add(Me.TotalFilesLabel)
         Me.Panel3.Controls.Add(Me.CacheExplorerList)
@@ -360,7 +357,7 @@ Partial Class Form1
         Me.CacheListBackup.FormattingEnabled = True
         Me.CacheListBackup.HorizontalScrollbar = True
         Me.CacheListBackup.IntegralHeight = False
-        Me.CacheListBackup.Location = New System.Drawing.Point(132, 269)
+        Me.CacheListBackup.Location = New System.Drawing.Point(133, 296)
         Me.CacheListBackup.Name = "CacheListBackup"
         Me.CacheListBackup.Size = New System.Drawing.Size(10, 10)
         Me.CacheListBackup.TabIndex = 11
@@ -374,38 +371,10 @@ Partial Class Form1
         Me.FilterComboBox.ForeColor = System.Drawing.Color.LightGray
         Me.FilterComboBox.FormattingEnabled = True
         Me.FilterComboBox.Items.AddRange(New Object() {".png", ".gif", ".jpeg", ".jpg", ".mp4", ".unknown", ".bmp", ".wmf", ".mpeg", ".webm"})
-        Me.FilterComboBox.Location = New System.Drawing.Point(9, 285)
+        Me.FilterComboBox.Location = New System.Drawing.Point(7, 311)
         Me.FilterComboBox.Name = "FilterComboBox"
-        Me.FilterComboBox.Size = New System.Drawing.Size(134, 21)
+        Me.FilterComboBox.Size = New System.Drawing.Size(136, 21)
         Me.FilterComboBox.TabIndex = 12
-        '
-        'Resetlistbutton
-        '
-        Me.Resetlistbutton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Resetlistbutton.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
-        Me.Resetlistbutton.FlatAppearance.BorderSize = 0
-        Me.Resetlistbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Resetlistbutton.ForeColor = System.Drawing.Color.Aqua
-        Me.Resetlistbutton.Location = New System.Drawing.Point(84, 309)
-        Me.Resetlistbutton.Name = "Resetlistbutton"
-        Me.Resetlistbutton.Size = New System.Drawing.Size(59, 23)
-        Me.Resetlistbutton.TabIndex = 8
-        Me.Resetlistbutton.Text = "Reset"
-        Me.Resetlistbutton.UseVisualStyleBackColor = False
-        '
-        'SearchButton
-        '
-        Me.SearchButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.SearchButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
-        Me.SearchButton.FlatAppearance.BorderSize = 0
-        Me.SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.SearchButton.ForeColor = System.Drawing.Color.Aqua
-        Me.SearchButton.Location = New System.Drawing.Point(9, 309)
-        Me.SearchButton.Name = "SearchButton"
-        Me.SearchButton.Size = New System.Drawing.Size(59, 23)
-        Me.SearchButton.TabIndex = 8
-        Me.SearchButton.Text = "Search"
-        Me.SearchButton.UseVisualStyleBackColor = False
         '
         'FilterLabel
         '
@@ -413,7 +382,7 @@ Partial Class Form1
         Me.FilterLabel.AutoSize = True
         Me.FilterLabel.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FilterLabel.ForeColor = System.Drawing.Color.LightGray
-        Me.FilterLabel.Location = New System.Drawing.Point(6, 270)
+        Me.FilterLabel.Location = New System.Drawing.Point(4, 296)
         Me.FilterLabel.Name = "FilterLabel"
         Me.FilterLabel.Size = New System.Drawing.Size(36, 13)
         Me.FilterLabel.TabIndex = 9
@@ -444,7 +413,7 @@ Partial Class Form1
         Me.CacheExplorerList.Location = New System.Drawing.Point(7, 19)
         Me.CacheExplorerList.Name = "CacheExplorerList"
         Me.CacheExplorerList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
-        Me.CacheExplorerList.Size = New System.Drawing.Size(136, 248)
+        Me.CacheExplorerList.Size = New System.Drawing.Size(136, 274)
         Me.CacheExplorerList.TabIndex = 7
         '
         'ImageSizeModeStrip
@@ -499,14 +468,22 @@ Partial Class Form1
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Arial", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
         Me.Label3.Location = New System.Drawing.Point(155, 52)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(130, 23)
+        Me.Label3.Size = New System.Drawing.Size(212, 18)
         Me.Label3.TabIndex = 8
-        Me.Label3.Text = "Please wait..."
+        Me.Label3.Text = "Please wait... Files Copied: 0"
         Me.Label3.Visible = False
+        '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Location = New System.Drawing.Point(155, 76)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(535, 23)
+        Me.ProgressBar1.TabIndex = 9
+        Me.ProgressBar1.Visible = False
         '
         'Form1
         '
@@ -514,6 +491,7 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(702, 450)
+        Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel2)
@@ -566,8 +544,6 @@ Partial Class Form1
     Friend WithEvents CacheExplorerList As ListBox
     Friend WithEvents FilterLabel As Label
     Friend WithEvents CacheListBackup As ListBox
-    Friend WithEvents SearchButton As Button
-    Friend WithEvents Resetlistbutton As Button
     Friend WithEvents FilterComboBox As ComboBox
     Friend WithEvents Panel4 As Panel
     Friend WithEvents ImageSizeModeStrip As ContextMenuStrip
@@ -579,4 +555,5 @@ Partial Class Form1
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents AboutButton As Button
     Friend WithEvents Label3 As Label
+    Friend WithEvents ProgressBar1 As ProgressBar
 End Class

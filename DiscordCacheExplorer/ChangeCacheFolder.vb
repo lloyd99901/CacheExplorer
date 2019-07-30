@@ -10,9 +10,27 @@ Public Class ChangeCacheFolder
         My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\CacheFiles\")
         If My.Computer.FileSystem.DirectoryExists(CacheFolderText.Text) = True Then
             Form1.discacheloc = CacheFolderText.Text
-            Form1.tempdiscacheloc = Application.StartupPath & "\CacheFiles\" & Split(CacheFolderText.Text, "\")(5) & "\"
-            My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\CacheFiles\")
-            My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\CacheFiles\" & Split(CacheFolderText.Text, "\")(5))
+            Dim count = 0
+            Dim sb As New Text.StringBuilder
+            Dim fulldir = ""
+            For Each Dir1 In Split(CacheFolderText.Text, "\")
+                count += 1
+                If count < 6 Then
+                Else
+                    fulldir = sb.Append(Dir1 & "\").ToString
+                End If
+
+            Next
+            Form1.tempdiscacheloc = Application.StartupPath & "\CacheFiles\" & fulldir
+            MsgBox(Form1.tempdiscacheloc)
+            Try
+                My.Computer.FileSystem.CreateDirectory(Form1.tempdiscacheloc)
+            Catch ex As Exception
+                MsgBox("Failure to create CacheFiles Directory, using old method.")
+                Form1.tempdiscacheloc = Application.StartupPath & "\CacheFiles\" & Split(CacheFolderText.Text, "\")(5) & "\"
+                My.Computer.FileSystem.CreateDirectory(Form1.tempdiscacheloc)
+            End Try
+
             Hide()
         Else
             MsgBox("Dir does not exist 0x02")
@@ -25,7 +43,7 @@ Public Class ChangeCacheFolder
 
             For Each file In My.Computer.FileSystem.GetFiles(Form1.tempdiscacheloc)
                 Dim filest As New FileStream(file, FileMode.Open, FileAccess.Read)
-                Form1.CacheExplorerList.Items.Add(Path.GetFileName(file) & " (" & Form1.GetImageFormat(filest) & ")")
+                Form1.CacheExplorerList.Items.Add(Path.GetFileName(file) & " (" & Form1.GetFileFormat(filest) & ")")
                 filest.Close()
             Next
             For Each item In Form1.CacheExplorerList.Items
@@ -67,6 +85,49 @@ Public Class ChangeCacheFolder
     Private Sub ChangeCacheFolder_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
         On Error Resume Next
         Application.DoEvents()
+        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\ProgramListCache.ini") Then
+            Dim ProgramCacheList = File.ReadAllLines(Application.StartupPath & "\ProgramListCache.ini")
+            For Each line As String In ProgramCacheList
+                AutoDetectListbox.Items.Add(line)
+            Next
+            For Each item In AutoDetectListbox.Items
+                BackUPList.Items.Add(item)
+            Next
+        Else
+
+            For Each folder In My.Computer.FileSystem.GetDirectories("C:\Users\" & Environment.UserName & "\AppData\Roaming\", FileIO.SearchOption.SearchAllSubDirectories)
+                If Path.GetFileName(folder).ToLower.Contains("cache") Then
+                    AutoDetectListbox.Items.Add(folder)
+                End If
+            Next
+            For Each folder In My.Computer.FileSystem.GetDirectories("C:\Users\" & Environment.UserName & "\AppData\Local\", FileIO.SearchOption.SearchAllSubDirectories)
+                If Path.GetFileName(folder).ToLower.Contains("cache") Then
+                    AutoDetectListbox.Items.Add(folder)
+                End If
+            Next
+            For Each item In AutoDetectListbox.Items
+                BackUPList.Items.Add(item)
+            Next
+            Using sw As New IO.StreamWriter(Application.StartupPath & "\ProgramListCache.ini")
+                For Each item As String In AutoDetectListbox.Items
+                    sw.WriteLine(item)
+                Next
+                sw.Close()
+            End Using
+        End If
+        Label3.Visible = False
+    End Sub
+    Private Sub FilterComboBox_TextChanged(sender As Object, e As EventArgs) Handles FilterComboBox.TextChanged
+        AutoDetectListbox.Items.Clear()
+        For Each item As String In BackUPList.Items
+            If item.ToLower.Contains(FilterComboBox.Text.ToLower) Then
+                AutoDetectListbox.Items.Add(item)
+            End If
+        Next
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
         For Each folder In My.Computer.FileSystem.GetDirectories("C:\Users\" & Environment.UserName & "\AppData\Roaming\", FileIO.SearchOption.SearchAllSubDirectories)
             If Path.GetFileName(folder).ToLower.Contains("cache") Then
                 AutoDetectListbox.Items.Add(folder)
@@ -80,29 +141,11 @@ Public Class ChangeCacheFolder
         For Each item In AutoDetectListbox.Items
             BackUPList.Items.Add(item)
         Next
-        Label3.Visible = False
-    End Sub
-
-    Private Sub SearchButton_Click(sender As Object, e As EventArgs) Handles SearchButton.Click
-        AutoDetectListbox.Items.Clear()
-        For Each item As String In BackUPList.Items
-            If item.ToLower.Contains(FilterComboBox.Text.ToLower) Then
-                AutoDetectListbox.Items.Add(item)
-            End If
-        Next
-    End Sub
-
-    Private Sub Resetlistbutton_Click(sender As Object, e As EventArgs) Handles Resetlistbutton.Click
-        AutoDetectListbox.Items.Clear()
-
-        For Each item In BackUPList.Items
-            AutoDetectListbox.Items.Add(item)
-        Next
-    End Sub
-
-    Private Sub FilterComboBox_KeyDown(sender As Object, e As KeyEventArgs) Handles FilterComboBox.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            SearchButton.PerformClick()
-        End If
+        Using sw As New IO.StreamWriter(Application.StartupPath & "\ProgramListCache.ini")
+            For Each item As String In AutoDetectListbox.Items
+                sw.WriteLine(item)
+            Next
+            sw.Close()
+        End Using
     End Sub
 End Class

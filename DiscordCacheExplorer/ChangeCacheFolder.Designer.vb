@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ChangeCacheFolder
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class ChangeCacheFolder
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ChangeCacheFolder))
         Me.CacheFolderText = New System.Windows.Forms.TextBox()
@@ -30,10 +30,9 @@ Partial Class ChangeCacheFolder
         Me.AutoDetectListbox = New System.Windows.Forms.ListBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.BackUPList = New System.Windows.Forms.ListBox()
-        Me.Resetlistbutton = New System.Windows.Forms.Button()
-        Me.SearchButton = New System.Windows.Forms.Button()
         Me.FilterLabel = New System.Windows.Forms.Label()
         Me.FilterComboBox = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'CacheFolderText
@@ -66,7 +65,7 @@ Partial Class ChangeCacheFolder
         Me.OKaybutton.FlatAppearance.BorderSize = 0
         Me.OKaybutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.OKaybutton.ForeColor = System.Drawing.Color.Aqua
-        Me.OKaybutton.Location = New System.Drawing.Point(0, 340)
+        Me.OKaybutton.Location = New System.Drawing.Point(0, 310)
         Me.OKaybutton.Name = "OKaybutton"
         Me.OKaybutton.Size = New System.Drawing.Size(536, 48)
         Me.OKaybutton.TabIndex = 5
@@ -96,15 +95,16 @@ Partial Class ChangeCacheFolder
         Me.AutoDetectListbox.IntegralHeight = False
         Me.AutoDetectListbox.Location = New System.Drawing.Point(12, 65)
         Me.AutoDetectListbox.Name = "AutoDetectListbox"
-        Me.AutoDetectListbox.Size = New System.Drawing.Size(512, 204)
+        Me.AutoDetectListbox.Size = New System.Drawing.Size(512, 200)
         Me.AutoDetectListbox.TabIndex = 8
         '
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.Label3.Font = New System.Drawing.Font("Arial", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(119, 138)
+        Me.Label3.Location = New System.Drawing.Point(119, 93)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(290, 23)
         Me.Label3.TabIndex = 6
@@ -112,9 +112,6 @@ Partial Class ChangeCacheFolder
         '
         'BackUPList
         '
-        Me.BackUPList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BackUPList.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.BackUPList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.BackUPList.ForeColor = System.Drawing.Color.White
@@ -127,41 +124,13 @@ Partial Class ChangeCacheFolder
         Me.BackUPList.TabIndex = 9
         Me.BackUPList.Visible = False
         '
-        'Resetlistbutton
-        '
-        Me.Resetlistbutton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Resetlistbutton.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
-        Me.Resetlistbutton.FlatAppearance.BorderSize = 0
-        Me.Resetlistbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Resetlistbutton.ForeColor = System.Drawing.Color.Aqua
-        Me.Resetlistbutton.Location = New System.Drawing.Point(465, 311)
-        Me.Resetlistbutton.Name = "Resetlistbutton"
-        Me.Resetlistbutton.Size = New System.Drawing.Size(59, 23)
-        Me.Resetlistbutton.TabIndex = 13
-        Me.Resetlistbutton.Text = "Reset"
-        Me.Resetlistbutton.UseVisualStyleBackColor = False
-        '
-        'SearchButton
-        '
-        Me.SearchButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.SearchButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
-        Me.SearchButton.FlatAppearance.BorderSize = 0
-        Me.SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.SearchButton.ForeColor = System.Drawing.Color.Aqua
-        Me.SearchButton.Location = New System.Drawing.Point(400, 311)
-        Me.SearchButton.Name = "SearchButton"
-        Me.SearchButton.Size = New System.Drawing.Size(59, 23)
-        Me.SearchButton.TabIndex = 14
-        Me.SearchButton.Text = "Search"
-        Me.SearchButton.UseVisualStyleBackColor = False
-        '
         'FilterLabel
         '
         Me.FilterLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.FilterLabel.AutoSize = True
         Me.FilterLabel.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FilterLabel.ForeColor = System.Drawing.Color.LightGray
-        Me.FilterLabel.Location = New System.Drawing.Point(12, 272)
+        Me.FilterLabel.Location = New System.Drawing.Point(12, 268)
         Me.FilterLabel.Name = "FilterLabel"
         Me.FilterLabel.Size = New System.Drawing.Size(36, 13)
         Me.FilterLabel.TabIndex = 15
@@ -169,25 +138,38 @@ Partial Class ChangeCacheFolder
         '
         'FilterComboBox
         '
-        Me.FilterComboBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.FilterComboBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FilterComboBox.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.FilterComboBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.FilterComboBox.ForeColor = System.Drawing.Color.White
-        Me.FilterComboBox.Location = New System.Drawing.Point(12, 288)
+        Me.FilterComboBox.Location = New System.Drawing.Point(12, 284)
         Me.FilterComboBox.Name = "FilterComboBox"
         Me.FilterComboBox.Size = New System.Drawing.Size(512, 20)
         Me.FilterComboBox.TabIndex = 17
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.ForeColor = System.Drawing.Color.Aqua
+        Me.Button1.Location = New System.Drawing.Point(400, 2)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(124, 20)
+        Me.Button1.TabIndex = 18
+        Me.Button1.Text = "Refresh Program List"
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'ChangeCacheFolder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(536, 388)
+        Me.ClientSize = New System.Drawing.Size(536, 358)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.FilterComboBox)
-        Me.Controls.Add(Me.Resetlistbutton)
-        Me.Controls.Add(Me.SearchButton)
         Me.Controls.Add(Me.FilterLabel)
         Me.Controls.Add(Me.BackUPList)
         Me.Controls.Add(Me.Label3)
@@ -197,6 +179,7 @@ Partial Class ChangeCacheFolder
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.CacheFolderText)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MinimumSize = New System.Drawing.Size(552, 279)
         Me.Name = "ChangeCacheFolder"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Setup: Cache Folder"
@@ -212,8 +195,7 @@ Partial Class ChangeCacheFolder
     Friend WithEvents AutoDetectListbox As ListBox
     Friend WithEvents Label3 As Label
     Friend WithEvents BackUPList As ListBox
-    Friend WithEvents Resetlistbutton As Button
-    Friend WithEvents SearchButton As Button
     Friend WithEvents FilterLabel As Label
     Friend WithEvents FilterComboBox As TextBox
+    Friend WithEvents Button1 As Button
 End Class

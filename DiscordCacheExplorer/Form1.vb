@@ -6,38 +6,27 @@ Imports System.Text
 'Add a check to see if the file doesnt have a . on it
 'check if folder has cache on it.
 'Refine detection of file format
-'Add sep folders for each program
+'Add sep folders for each program Done
+'Fix bug that prevents deletion of a file that is currently in use by the program
+
 Public Class Form1
     Public discacheloc = "" '"C:\Users\" & Environment.UserName & "\AppData\Roaming\discord\Cache\"
     Public tempdiscacheloc = Application.StartupPath & "\CacheFiles\"
+    Dim filestrea As FileStream
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Application.DoEvents()
         If My.Computer.FileSystem.DirectoryExists(tempdiscacheloc) Then
             CacheExplorerList.Items.Clear()
 
             For Each file In My.Computer.FileSystem.GetFiles(tempdiscacheloc)
-                Dim filest As New FileStream(file, FileMode.Open, FileAccess.Read)
-                CacheExplorerList.Items.Add(Path.GetFileName(file) & " (" & GetImageFormat(filest) & ")")
-                filest.Close()
+                Dim filestrea As New FileStream(file, FileMode.Open, FileAccess.Read)
+                CacheExplorerList.Items.Add(Path.GetFileName(file) & " (" & GetFileFormat(filestrea) & ")")
+                filestrea.Close()
             Next
             For Each item In CacheExplorerList.Items
                 CacheListBackup.Items.Add(item)
             Next
         Else
-            'If FolderBrowserDialog1.ShowDialog <> DialogResult.Cancel Then
-            'discacheloc = FolderBrowserDialog1.SelectedPath
-            'If My.Computer.FileSystem.DirectoryExists(discacheloc) Then
-            '    My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\CacheFiles\")
-            '    For Each file In My.Computer.FileSystem.GetFiles(tempdiscacheloc)
-            '        ListBox1.Items.Add(Path.GetFileName(file) & " (" & GetImageFormat(New FileStream(file, FileMode.Open, FileAccess.Read)) & ")")
-            '    Next
-            '    For Each item In ListBox1.Items
-            '        ListBox2.Items.Add(item)
-            '    Next
-            'Else
-            '    MsgBox("0x02, Dir does not exist, exiting.")
-            '    Close()
-            'End If
-            'End If
             ChangeCacheFolder.Show()
         End If
         TotalFilesLabel.Text = "Total: " & CacheExplorerList.Items.Count
@@ -59,13 +48,12 @@ Public Class Form1
                 Catch ex1 As Exception
                     ImageDisplay.Image = ImageDisplay.ErrorImage
                 End Try
-                Dim filesize As New FileInfo(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0))
             ElseIf OpenTypeCheck.Text = "Image" Then
                 Try
                     PlainTextBox.Visible = False
                     AxWindowsMediaPlayer1.Visible = False
-                    Dim filestre As New FileStream(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), FileMode.Open, FileAccess.Read)
-                    ImageDisplay.Image = Image.FromStream(filestre)
+                    Dim filestrea As New FileStream(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), FileMode.Open, FileAccess.Read)
+                    ImageDisplay.Image = Image.FromStream(filestrea)
                 Catch ex As Exception
                     ImageDisplay.Image = ImageDisplay.ErrorImage
                 End Try
@@ -90,7 +78,6 @@ Public Class Form1
                     AxWindowsMediaPlayer1.Visible = False
                     Dim filestrea As New FileStream(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), FileMode.Open, FileAccess.Read)
                     ImageDisplay.Image = Image.FromStream(filestrea)
-
                 Catch ex As Exception
                     ImageDisplay.Image = ImageDisplay.ErrorImage
                 End Try
@@ -131,16 +118,22 @@ Public Class Form1
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ScanCachebutton.Click
         CacheExplorerList.Items.Clear()
         Label3.Visible = True
+        ProgressBar1.Visible = True
         Application.DoEvents()
-
+        Dim filenum = 0
+        Dim totalfilenum = Directory.GetFiles(discacheloc, "*.*").Count
+        ProgressBar1.Maximum = totalfilenum
         For Each file In My.Computer.FileSystem.GetFiles(discacheloc)
             On Error Resume Next
             My.Computer.FileSystem.CopyFile(file, tempdiscacheloc & Path.GetFileName(file), True)
-            Threading.Thread.Sleep(5)
+            filenum += 1
+            Label3.Text = "Please wait... Files Copied: " & filenum & " out of " & totalfilenum
+            ProgressBar1.Value = filenum
+            Application.DoEvents()
         Next
         For Each file In My.Computer.FileSystem.GetFiles(tempdiscacheloc)
             Dim filestrea As New FileStream(file, FileMode.Open, FileAccess.Read)
-            CacheExplorerList.Items.Add(Path.GetFileName(file) & " (" & GetImageFormat(filestrea) & ")")
+            CacheExplorerList.Items.Add(Path.GetFileName(file) & " (" & GetFileFormat(filestrea) & ")")
             filestrea.Close()
         Next
         CacheListBackup.Items.Clear()
@@ -149,6 +142,8 @@ Public Class Form1
         Next
         TotalFilesLabel.Text = "Total: " & CacheExplorerList.Items.Count
         Label3.Visible = False
+        ProgressBar1.Visible = False
+
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles ExportButt.Click
@@ -159,9 +154,9 @@ Public Class Form1
         For Each item In CacheExplorerList.SelectedItems
             Dim FileToSaveAs As String = Path.Combine(My.Computer.FileSystem.SpecialDirectories.Temp, SaveFileDialog1.FileName & item.ToString)
             Dim selectedfile = (item.ToString.Split("("c)(1).Remove(item.ToString.Split("("c)(1).Length - 1))
-            Dim filestream As New FileStream(tempdiscacheloc & item.ToString.Split("("c)(0), FileMode.Open, FileAccess.Read)
-                My.Computer.FileSystem.CopyFile(tempdiscacheloc & item.ToString.Split("("c)(0), FileToSaveAs & GetImageFormat(filestream))
-            filestream.Close()
+            Dim filestrea As New FileStream(tempdiscacheloc & item.ToString.Split("("c)(0), FileMode.Open, FileAccess.Read)
+            My.Computer.FileSystem.CopyFile(tempdiscacheloc & item.ToString.Split("("c)(0), FileToSaveAs & GetFileFormat(filestrea))
+            filestrea.Close()
         Next
 
 
@@ -176,8 +171,8 @@ Public Class Form1
         unknown
     End Enum
 
-    'Yes I know this code is probably sloppy or isn't efficient.
-    Public Shared Function GetImageFormat(ByVal stream As FileStream)
+    'Needs improvement
+    Public Shared Function GetFileFormat(ByVal stream As FileStream)
         Dim bmp = Encoding.ASCII.GetBytes("BM")
         Dim gif = Encoding.ASCII.GetBytes("GIF")
         Dim mpeg = Encoding.ASCII.GetBytes("ID3")
@@ -197,17 +192,10 @@ Public Class Form1
         If jpeg2.SequenceEqual(buffer.Take(jpeg2.Length)) Then Return ".jpeg"
         If mpeg.SequenceEqual(buffer.Take(mpeg.Length)) Then Return ".mpeg"
         If My.Computer.FileSystem.ReadAllBytes(stream.Name)(6) = Nothing And My.Computer.FileSystem.ReadAllBytes(stream.Name)(10) = Nothing Then Return ".webm"
-        If My.Computer.FileSystem.ReadAllBytes(stream.Name)(0) = Nothing Then Return ".mp4"
+        If My.Computer.FileSystem.ReadAllBytes(stream.Name)(0) = Nothing And My.Computer.FileSystem.ReadAllBytes(stream.Name)(1) = Nothing And My.Computer.FileSystem.ReadAllBytes(stream.Name)(2) = Nothing Then Return ".mp4"
         Return ".unknown"
     End Function
-    Public Function FileMatches(folderPath As String, filePattern As String, phrase As String) As Boolean
-        For Each fileName As String In Directory.GetFiles(folderPath, filePattern)
-            If fileName.Contains(phrase) Then
-                Return True
-            End If
-        Next
-        Return False
-    End Function
+
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles DeleteALLbutton.Click
         If MsgBox("Are you sure you want to delete all cache files? You should close discord before this operation. (This will increase the time it will take for an image to load after)", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, "Warning") = MsgBoxResult.Yes Then
             Dim totaldelete = 0
@@ -257,39 +245,13 @@ Public Class Form1
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles ClearCacheButton.Click
-        If ImageDisplay.Image Is Nothing Then
-        Else
-            ImageDisplay.Image.Dispose()
-        End If
-
         For Each file In My.Computer.FileSystem.GetFiles(tempdiscacheloc)
+            On Error Resume Next
             My.Computer.FileSystem.DeleteFile(file)
         Next
+
         CacheExplorerList.Items.Clear()
         TotalFilesLabel.Text = "Total: " & CacheExplorerList.Items.Count
-    End Sub
-
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles SearchButton.Click
-        CacheExplorerList.Items.Clear()
-        For Each item As String In CacheListBackup.Items
-            If item.Contains(FilterComboBox.Text) Then
-                CacheExplorerList.Items.Add(item)
-            End If
-        Next
-    End Sub
-
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Resetlistbutton.Click
-        CacheExplorerList.Items.Clear()
-
-        For Each item In CacheListBackup.Items
-            CacheExplorerList.Items.Add(item)
-        Next
-    End Sub
-
-    Private Sub TextBox1_KeyUp(sender As Object, e As KeyEventArgs) Handles FilterComboBox.KeyUp
-        If e.KeyCode = Keys.Enter Then
-            SearchButton.PerformClick()
-        End If
     End Sub
 
     Private Sub ZoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ZoomToolStripMenuItem.Click
@@ -322,5 +284,14 @@ Public Class Form1
 
     Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles OverrideCheck.CheckedChanged
         OpenTypeCheck.Enabled = OverrideCheck.Checked
+    End Sub
+
+    Private Sub FilterComboBox_TextUpdate(sender As Object, e As EventArgs) Handles FilterComboBox.TextUpdate, FilterComboBox.SelectedIndexChanged
+        CacheExplorerList.Items.Clear()
+        For Each item As String In CacheListBackup.Items
+            If item.Contains(FilterComboBox.Text) Then
+                CacheExplorerList.Items.Add(item)
+            End If
+        Next
     End Sub
 End Class

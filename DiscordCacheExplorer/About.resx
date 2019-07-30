@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="TextBox1.Text" xml:space="preserve">
+  <data name="RichTextBox1.Text" xml:space="preserve">
     <value>----Cache Explorer----
 By LunarHunter 2019
 
@@ -130,15 +130,25 @@ Either try again or report to the developer. Report what you were doing before t
 
 Builds:
 
+v1.2
+Filter boxes now update in realtime, no need to click search.
+Added Minimum Size to Change Cache Folder Form.
+Fixed Incorrect Anchor.
+Removed unused code.
+Program now updates while doing tasks like scanning (e.g. when scanning, it will tell you how many files have been scanned and how many are there in total)
+Added cache to the Change Cache Folder form to make the program load faster.
+Program will now add folders in the programs cache folder to specify where the cache came from (e.g. CacheFiles\Opera\GPUCache\)
+
 v1.1
 Changed from build to version because github doesnt allow it.
 Change Cache Folder form now checks for all folders in appdata with cache in its name.
 Added please wait labels when loading stuff that takes awhile.
 Added a filter to the Change Cache Folder form.
 Program now adds folders in cache to specify where the cache came from (e.g. CacheFiles\Opera\). That way, cache files won't get overwritten.
-
+Added progress bar when scanning cache.
 
 build 1000:
-No changes</value>
+No changes
+</value>
   </data>
 </root>
