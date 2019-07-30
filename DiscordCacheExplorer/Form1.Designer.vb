@@ -60,6 +60,7 @@ Partial Class Form1
         Me.StretchImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.ImageDisplay = New System.Windows.Forms.PictureBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
@@ -329,9 +330,9 @@ Partial Class Form1
         Me.BuildInformationLabel.ForeColor = System.Drawing.Color.LightGray
         Me.BuildInformationLabel.Location = New System.Drawing.Point(76, 2)
         Me.BuildInformationLabel.Name = "BuildInformationLabel"
-        Me.BuildInformationLabel.Size = New System.Drawing.Size(139, 15)
+        Me.BuildInformationLabel.Size = New System.Drawing.Size(106, 15)
         Me.BuildInformationLabel.TabIndex = 10
-        Me.BuildInformationLabel.Text = "build 1000 - LunarHunter"
+        Me.BuildInformationLabel.Text = "v1.1 - LunarHunter"
         '
         'Panel3
         '
@@ -495,12 +496,25 @@ Partial Class Form1
         Me.ImageDisplay.TabIndex = 1
         Me.ImageDisplay.TabStop = False
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Arial", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(155, 52)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(130, 23)
+        Me.Label3.TabIndex = 8
+        Me.Label3.Text = "Please wait..."
+        Me.Label3.Visible = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(702, 450)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
@@ -525,6 +539,7 @@ Partial Class Form1
         Me.ImageSizeModeStrip.ResumeLayout(False)
         CType(Me.ImageDisplay, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents ImageDisplay As PictureBox
@@ -563,4 +578,5 @@ Partial Class Form1
     Friend WithEvents ChangeCacheFoldButton As Button
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents AboutButton As Button
+    Friend WithEvents Label3 As Label
 End Class

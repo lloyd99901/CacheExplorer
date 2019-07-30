@@ -123,12 +123,20 @@ By LunarHunter 2019
 
 Help:
 What is cache?
-A cache file contains temporary information that a program sets aside because it assumes you'll want to use it again soon. Doing this allows the software to load the information faster and reduces bandwidth costs than it would take to find the original data on servers.
+A cache file has temporary information that a program sets aside because it assumes you'll want to use it again soon. Doing this allows the software to load the information faster and reduces bandwidth costs than it would take to find the original data on servers.
 
 I've encountered an error/exception, what do I do?
 Either try again or report to the developer. Report what you were doing before the error and what the error said.
 
 Builds:
+
+v1.1
+Changed from build to version because github doesnt allow it.
+Change Cache Folder form now checks for all folders in appdata with cache in its name.
+Added please wait labels when loading stuff that takes awhile.
+Added a filter to the Change Cache Folder form.
+Program now adds folders in cache to specify where the cache came from (e.g. CacheFiles\Opera\). That way, cache files won't get overwritten.
+
 
 build 1000:
 No changes</value>

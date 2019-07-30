@@ -22,11 +22,6 @@ CacheExplorer
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
-<member name="P:DiscordCacheExplorer.My.Resources.Resources.icons8_discord_64">
-<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member>
 <member name="P:DiscordCacheExplorer.My.Resources.Resources.icons8_opened_folder_64">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.

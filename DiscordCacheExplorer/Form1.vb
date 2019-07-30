@@ -1,6 +1,12 @@
 ﻿Imports System.IO
 Imports System.Text
 
+
+'Notes
+'Add a check to see if the file doesnt have a . on it
+'check if folder has cache on it.
+'Refine detection of file format
+'Add sep folders for each program
 Public Class Form1
     Public discacheloc = "" '"C:\Users\" & Environment.UserName & "\AppData\Roaming\discord\Cache\"
     Public tempdiscacheloc = Application.StartupPath & "\CacheFiles\"
@@ -104,22 +110,32 @@ Public Class Form1
                 PlainTextBox.Visible = True
                 AxWindowsMediaPlayer1.Visible = False
                 Try
-                    PlainTextBox.LoadFile(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), RichTextBoxStreamType.PlainText)
+                    If My.Computer.FileSystem.FileExists(Application.StartupPath & "\settings.ini") Then
+                        PlainTextBox.LoadFile(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), RichTextBoxStreamType.PlainText)
+                    Else
+                        Dim msg = MsgBox("Warning! Loading .unknown files in plain text may take awhile depending on the file size. Are you sure you want to load it? Press Cancel to load and never show up again.", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNoCancel, "Warning!")
+                        If msg = MsgBoxResult.Yes Then
+                            PlainTextBox.LoadFile(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), RichTextBoxStreamType.PlainText)
+                        ElseIf msg = MsgBoxResult.Cancel Then
+                            My.Computer.FileSystem.WriteAllText(Application.StartupPath & "\settings.ini", "", False)
+                        End If
+                    End If
                 Catch ex1 As Exception
                     ImageDisplay.Image = ImageDisplay.ErrorImage
                 End Try
                 AutoPlayTimer.Stop()
-                Dim filesize As New FileInfo(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0))
             End If
         End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ScanCachebutton.Click
         CacheExplorerList.Items.Clear()
+        Label3.Visible = True
+        Application.DoEvents()
 
         For Each file In My.Computer.FileSystem.GetFiles(discacheloc)
             On Error Resume Next
-            My.Computer.FileSystem.CopyFile(file, Application.StartupPath & "\CacheFiles\" & Path.GetFileName(file), True)
+            My.Computer.FileSystem.CopyFile(file, tempdiscacheloc & Path.GetFileName(file), True)
             Threading.Thread.Sleep(5)
         Next
         For Each file In My.Computer.FileSystem.GetFiles(tempdiscacheloc)
@@ -132,6 +148,7 @@ Public Class Form1
             CacheListBackup.Items.Add(item)
         Next
         TotalFilesLabel.Text = "Total: " & CacheExplorerList.Items.Count
+        Label3.Visible = False
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles ExportButt.Click
@@ -164,7 +181,6 @@ Public Class Form1
         Dim bmp = Encoding.ASCII.GetBytes("BM")
         Dim gif = Encoding.ASCII.GetBytes("GIF")
         Dim mpeg = Encoding.ASCII.GetBytes("ID3")
-        Dim webm = Encoding.ASCII.GetBytes("webm")
         Dim png = New Byte() {137, 80, 78, 71}
         Dim tiff = New Byte() {73, 73, 42}
         Dim tiff2 = New Byte() {77, 77, 42}
