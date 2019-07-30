@@ -22,7 +22,6 @@ Public Class ChangeCacheFolder
 
             Next
             Form1.tempdiscacheloc = Application.StartupPath & "\CacheFiles\" & fulldir
-            MsgBox(Form1.tempdiscacheloc)
             Try
                 My.Computer.FileSystem.CreateDirectory(Form1.tempdiscacheloc)
             Catch ex As Exception
