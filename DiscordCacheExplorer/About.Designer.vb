@@ -50,10 +50,10 @@ Partial Class About
         Me.RichTextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.RichTextBox1.Location = New System.Drawing.Point(12, 87)
+        Me.RichTextBox1.Location = New System.Drawing.Point(12, 84)
         Me.RichTextBox1.Name = "RichTextBox1"
         Me.RichTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.RichTextBox1.Size = New System.Drawing.Size(479, 291)
+        Me.RichTextBox1.Size = New System.Drawing.Size(479, 288)
         Me.RichTextBox1.TabIndex = 2
         Me.RichTextBox1.Text = resources.GetString("RichTextBox1.Text")
         '
@@ -66,17 +66,17 @@ Partial Class About
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(503, 79)
+        Me.Panel2.Size = New System.Drawing.Size(503, 78)
         Me.Panel2.TabIndex = 8
         '
         'CacheExplorerLabel
         '
         Me.CacheExplorerLabel.AutoSize = True
-        Me.CacheExplorerLabel.Font = New System.Drawing.Font("Segoe UI", 17.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CacheExplorerLabel.Font = New System.Drawing.Font("Arial Narrow", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CacheExplorerLabel.ForeColor = System.Drawing.Color.LightGray
-        Me.CacheExplorerLabel.Location = New System.Drawing.Point(133, 7)
+        Me.CacheExplorerLabel.Location = New System.Drawing.Point(133, 6)
         Me.CacheExplorerLabel.Name = "CacheExplorerLabel"
-        Me.CacheExplorerLabel.Size = New System.Drawing.Size(166, 31)
+        Me.CacheExplorerLabel.Size = New System.Drawing.Size(149, 29)
         Me.CacheExplorerLabel.TabIndex = 9
         Me.CacheExplorerLabel.Text = "Cache Explorer"
         '
@@ -85,9 +85,9 @@ Partial Class About
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.Panel4.Controls.Add(Me.Label1)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel4.Location = New System.Drawing.Point(0, 44)
+        Me.Panel4.Location = New System.Drawing.Point(0, 40)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(501, 33)
+        Me.Panel4.Size = New System.Drawing.Size(501, 36)
         Me.Panel4.TabIndex = 9
         '
         'Label1
@@ -103,13 +103,14 @@ Partial Class About
         '
         'About
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(503, 387)
+        Me.ClientSize = New System.Drawing.Size(503, 384)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.RichTextBox1)
+        Me.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "About"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

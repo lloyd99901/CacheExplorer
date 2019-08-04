@@ -40,9 +40,8 @@ Partial Class Form1
         Me.AutoPlayTimer = New System.Windows.Forms.Timer(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.AboutButton = New System.Windows.Forms.Button()
-        Me.ChangeCacheFoldButton = New System.Windows.Forms.Button()
         Me.CacheExplorerLabel = New System.Windows.Forms.Label()
-        Me.Logo = New System.Windows.Forms.PictureBox()
+        Me.ChangeCacheFoldButton = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.BuildInformationLabel = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
@@ -57,16 +56,17 @@ Partial Class Form1
         Me.NormalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StretchImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.ImageDisplay = New System.Windows.Forms.PictureBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
+        Me.Logo = New System.Windows.Forms.PictureBox()
+        Me.ImageDisplay = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
-        CType(Me.Logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.ImageSizeModeStrip.SuspendLayout()
+        CType(Me.Logo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImageDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -85,19 +85,20 @@ Partial Class Form1
         Me.Panel1.Controls.Add(Me.ScanCachebutton)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel1.Location = New System.Drawing.Point(0, 387)
+        Me.Panel1.Location = New System.Drawing.Point(0, 368)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(702, 63)
+        Me.Panel1.Size = New System.Drawing.Size(701, 68)
         Me.Panel1.TabIndex = 3
         '
         'OverrideCheck
         '
         Me.OverrideCheck.AutoSize = True
         Me.OverrideCheck.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.OverrideCheck.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.OverrideCheck.ForeColor = System.Drawing.Color.White
-        Me.OverrideCheck.Location = New System.Drawing.Point(265, 39)
+        Me.OverrideCheck.Location = New System.Drawing.Point(265, 42)
         Me.OverrideCheck.Name = "OverrideCheck"
-        Me.OverrideCheck.Size = New System.Drawing.Size(68, 17)
+        Me.OverrideCheck.Size = New System.Drawing.Size(66, 18)
         Me.OverrideCheck.TabIndex = 7
         Me.OverrideCheck.Text = "Override"
         Me.OverrideCheck.UseVisualStyleBackColor = True
@@ -108,10 +109,11 @@ Partial Class Form1
         Me.AutoPlayCheck.Checked = True
         Me.AutoPlayCheck.CheckState = System.Windows.Forms.CheckState.Checked
         Me.AutoPlayCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.AutoPlayCheck.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AutoPlayCheck.ForeColor = System.Drawing.Color.White
         Me.AutoPlayCheck.Location = New System.Drawing.Point(367, 2)
         Me.AutoPlayCheck.Name = "AutoPlayCheck"
-        Me.AutoPlayCheck.Size = New System.Drawing.Size(105, 17)
+        Me.AutoPlayCheck.Size = New System.Drawing.Size(101, 18)
         Me.AutoPlayCheck.TabIndex = 6
         Me.AutoPlayCheck.Text = "Auto-Play Video"
         Me.AutoPlayCheck.UseVisualStyleBackColor = True
@@ -121,10 +123,11 @@ Partial Class Form1
         Me.SecureDeleteButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
         Me.SecureDeleteButton.FlatAppearance.BorderSize = 0
         Me.SecureDeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.SecureDeleteButton.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SecureDeleteButton.ForeColor = System.Drawing.Color.Aqua
-        Me.SecureDeleteButton.Location = New System.Drawing.Point(147, 30)
+        Me.SecureDeleteButton.Location = New System.Drawing.Point(147, 32)
         Me.SecureDeleteButton.Name = "SecureDeleteButton"
-        Me.SecureDeleteButton.Size = New System.Drawing.Size(111, 31)
+        Me.SecureDeleteButton.Size = New System.Drawing.Size(111, 33)
         Me.SecureDeleteButton.TabIndex = 5
         Me.SecureDeleteButton.Text = "Securely Delete All"
         Me.SecureDeleteButton.UseVisualStyleBackColor = False
@@ -134,10 +137,11 @@ Partial Class Form1
         Me.DeleteALLbutton.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
         Me.DeleteALLbutton.FlatAppearance.BorderSize = 0
         Me.DeleteALLbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.DeleteALLbutton.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DeleteALLbutton.ForeColor = System.Drawing.Color.Aqua
         Me.DeleteALLbutton.Location = New System.Drawing.Point(147, 0)
         Me.DeleteALLbutton.Name = "DeleteALLbutton"
-        Me.DeleteALLbutton.Size = New System.Drawing.Size(111, 29)
+        Me.DeleteALLbutton.Size = New System.Drawing.Size(111, 31)
         Me.DeleteALLbutton.TabIndex = 5
         Me.DeleteALLbutton.Text = "Delete All"
         Me.DeleteALLbutton.UseVisualStyleBackColor = False
@@ -145,21 +149,23 @@ Partial Class Form1
         'OpenTypeCheck
         '
         Me.OpenTypeCheck.Enabled = False
+        Me.OpenTypeCheck.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.OpenTypeCheck.FormattingEnabled = True
         Me.OpenTypeCheck.Items.AddRange(New Object() {"Image", "Plain Text", "Video"})
-        Me.OpenTypeCheck.Location = New System.Drawing.Point(264, 18)
+        Me.OpenTypeCheck.Location = New System.Drawing.Point(264, 19)
         Me.OpenTypeCheck.Name = "OpenTypeCheck"
-        Me.OpenTypeCheck.Size = New System.Drawing.Size(92, 21)
+        Me.OpenTypeCheck.Size = New System.Drawing.Size(92, 22)
         Me.OpenTypeCheck.TabIndex = 4
         Me.OpenTypeCheck.Text = "Image"
         '
         'OpenTypeLabel
         '
         Me.OpenTypeLabel.AutoSize = True
+        Me.OpenTypeLabel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.OpenTypeLabel.ForeColor = System.Drawing.Color.White
         Me.OpenTypeLabel.Location = New System.Drawing.Point(261, 4)
         Me.OpenTypeLabel.Name = "OpenTypeLabel"
-        Me.OpenTypeLabel.Size = New System.Drawing.Size(65, 13)
+        Me.OpenTypeLabel.Size = New System.Drawing.Size(62, 14)
         Me.OpenTypeLabel.TabIndex = 3
         Me.OpenTypeLabel.Text = "Open Type:"
         '
@@ -169,10 +175,11 @@ Partial Class Form1
         Me.ClearCacheButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
         Me.ClearCacheButton.FlatAppearance.BorderSize = 0
         Me.ClearCacheButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ClearCacheButton.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ClearCacheButton.ForeColor = System.Drawing.Color.Aqua
-        Me.ClearCacheButton.Location = New System.Drawing.Point(478, -1)
+        Me.ClearCacheButton.Location = New System.Drawing.Point(477, -1)
         Me.ClearCacheButton.Name = "ClearCacheButton"
-        Me.ClearCacheButton.Size = New System.Drawing.Size(97, 63)
+        Me.ClearCacheButton.Size = New System.Drawing.Size(97, 68)
         Me.ClearCacheButton.TabIndex = 0
         Me.ClearCacheButton.Text = "Clear Cache Explorer Dump"
         Me.ClearCacheButton.UseVisualStyleBackColor = False
@@ -184,10 +191,11 @@ Partial Class Form1
         Me.ExportButt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ExportButt.FlatAppearance.BorderSize = 0
         Me.ExportButt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ExportButt.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ExportButt.ForeColor = System.Drawing.Color.Aqua
-        Me.ExportButt.Location = New System.Drawing.Point(576, -1)
+        Me.ExportButt.Location = New System.Drawing.Point(575, -1)
         Me.ExportButt.Name = "ExportButt"
-        Me.ExportButt.Size = New System.Drawing.Size(125, 63)
+        Me.ExportButt.Size = New System.Drawing.Size(125, 68)
         Me.ExportButt.TabIndex = 0
         Me.ExportButt.Text = "Export"
         Me.ExportButt.UseVisualStyleBackColor = False
@@ -197,10 +205,11 @@ Partial Class Form1
         Me.ScanCachebutton.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
         Me.ScanCachebutton.FlatAppearance.BorderSize = 0
         Me.ScanCachebutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ScanCachebutton.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ScanCachebutton.ForeColor = System.Drawing.Color.Aqua
         Me.ScanCachebutton.Location = New System.Drawing.Point(-2, 0)
         Me.ScanCachebutton.Name = "ScanCachebutton"
-        Me.ScanCachebutton.Size = New System.Drawing.Size(148, 62)
+        Me.ScanCachebutton.Size = New System.Drawing.Size(148, 67)
         Me.ScanCachebutton.TabIndex = 2
         Me.ScanCachebutton.Text = "Scan/Rescan Cache"
         Me.ScanCachebutton.UseVisualStyleBackColor = False
@@ -218,10 +227,10 @@ Partial Class Form1
         Me.PlainTextBox.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(100, Byte), Integer))
         Me.PlainTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.PlainTextBox.ForeColor = System.Drawing.Color.LightGray
-        Me.PlainTextBox.Location = New System.Drawing.Point(150, 49)
+        Me.PlainTextBox.Location = New System.Drawing.Point(150, 53)
         Me.PlainTextBox.Name = "PlainTextBox"
         Me.PlainTextBox.ReadOnly = True
-        Me.PlainTextBox.Size = New System.Drawing.Size(552, 338)
+        Me.PlainTextBox.Size = New System.Drawing.Size(551, 315)
         Me.PlainTextBox.TabIndex = 4
         Me.PlainTextBox.Text = ""
         Me.PlainTextBox.Visible = False
@@ -235,7 +244,7 @@ Partial Class Form1
         Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(150, 49)
         Me.AxWindowsMediaPlayer1.Name = "AxWindowsMediaPlayer1"
         Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(552, 338)
+        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(551, 319)
         Me.AxWindowsMediaPlayer1.TabIndex = 5
         Me.AxWindowsMediaPlayer1.Visible = False
         '
@@ -256,7 +265,7 @@ Partial Class Form1
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(702, 48)
+        Me.Panel2.Size = New System.Drawing.Size(701, 52)
         Me.Panel2.TabIndex = 7
         '
         'AboutButton
@@ -267,12 +276,23 @@ Partial Class Form1
         Me.AboutButton.FlatAppearance.BorderSize = 0
         Me.AboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.AboutButton.ForeColor = System.Drawing.Color.Aqua
-        Me.AboutButton.Location = New System.Drawing.Point(531, -1)
+        Me.AboutButton.Location = New System.Drawing.Point(530, -1)
         Me.AboutButton.Name = "AboutButton"
-        Me.AboutButton.Size = New System.Drawing.Size(84, 48)
+        Me.AboutButton.Size = New System.Drawing.Size(84, 52)
         Me.AboutButton.TabIndex = 10
         Me.AboutButton.Text = "About and Help"
         Me.AboutButton.UseVisualStyleBackColor = False
+        '
+        'CacheExplorerLabel
+        '
+        Me.CacheExplorerLabel.AutoSize = True
+        Me.CacheExplorerLabel.Font = New System.Drawing.Font("Arial Narrow", 13.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CacheExplorerLabel.ForeColor = System.Drawing.Color.LightGray
+        Me.CacheExplorerLabel.Location = New System.Drawing.Point(73, 3)
+        Me.CacheExplorerLabel.Name = "CacheExplorerLabel"
+        Me.CacheExplorerLabel.Size = New System.Drawing.Size(117, 22)
+        Me.CacheExplorerLabel.TabIndex = 9
+        Me.CacheExplorerLabel.Text = "Cache Explorer"
         '
         'ChangeCacheFoldButton
         '
@@ -282,56 +302,33 @@ Partial Class Form1
         Me.ChangeCacheFoldButton.FlatAppearance.BorderSize = 0
         Me.ChangeCacheFoldButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ChangeCacheFoldButton.ForeColor = System.Drawing.Color.Aqua
-        Me.ChangeCacheFoldButton.Location = New System.Drawing.Point(616, -1)
+        Me.ChangeCacheFoldButton.Location = New System.Drawing.Point(615, -1)
         Me.ChangeCacheFoldButton.Name = "ChangeCacheFoldButton"
-        Me.ChangeCacheFoldButton.Size = New System.Drawing.Size(84, 48)
+        Me.ChangeCacheFoldButton.Size = New System.Drawing.Size(84, 52)
         Me.ChangeCacheFoldButton.TabIndex = 10
         Me.ChangeCacheFoldButton.Text = "Change Cache Folder"
         Me.ChangeCacheFoldButton.UseVisualStyleBackColor = False
-        '
-        'CacheExplorerLabel
-        '
-        Me.CacheExplorerLabel.AutoSize = True
-        Me.CacheExplorerLabel.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CacheExplorerLabel.ForeColor = System.Drawing.Color.LightGray
-        Me.CacheExplorerLabel.Location = New System.Drawing.Point(73, 2)
-        Me.CacheExplorerLabel.Name = "CacheExplorerLabel"
-        Me.CacheExplorerLabel.Size = New System.Drawing.Size(113, 21)
-        Me.CacheExplorerLabel.TabIndex = 9
-        Me.CacheExplorerLabel.Text = "Cache Explorer"
-        '
-        'Logo
-        '
-        Me.Logo.BackColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Logo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Logo.Image = Global.DiscordCacheExplorer.My.Resources.Resources.icons8_opened_folder_64
-        Me.Logo.Location = New System.Drawing.Point(-1, -1)
-        Me.Logo.Name = "Logo"
-        Me.Logo.Size = New System.Drawing.Size(69, 48)
-        Me.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.Logo.TabIndex = 8
-        Me.Logo.TabStop = False
         '
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.Panel4.Controls.Add(Me.BuildInformationLabel)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel4.Location = New System.Drawing.Point(0, 26)
+        Me.Panel4.Location = New System.Drawing.Point(0, 28)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(700, 20)
+        Me.Panel4.Size = New System.Drawing.Size(699, 22)
         Me.Panel4.TabIndex = 9
         '
         'BuildInformationLabel
         '
         Me.BuildInformationLabel.AutoSize = True
-        Me.BuildInformationLabel.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BuildInformationLabel.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BuildInformationLabel.ForeColor = System.Drawing.Color.LightGray
         Me.BuildInformationLabel.Location = New System.Drawing.Point(76, 2)
         Me.BuildInformationLabel.Name = "BuildInformationLabel"
-        Me.BuildInformationLabel.Size = New System.Drawing.Size(106, 15)
+        Me.BuildInformationLabel.Size = New System.Drawing.Size(108, 15)
         Me.BuildInformationLabel.TabIndex = 10
-        Me.BuildInformationLabel.Text = "v1.1 - LunarHunter"
+        Me.BuildInformationLabel.Text = "v1.3 - LunarHunter"
         '
         'Panel3
         '
@@ -342,9 +339,9 @@ Partial Class Form1
         Me.Panel3.Controls.Add(Me.TotalFilesLabel)
         Me.Panel3.Controls.Add(Me.CacheExplorerList)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel3.Location = New System.Drawing.Point(0, 48)
+        Me.Panel3.Location = New System.Drawing.Point(0, 52)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(149, 339)
+        Me.Panel3.Size = New System.Drawing.Size(149, 316)
         Me.Panel3.TabIndex = 8
         '
         'CacheListBackup
@@ -357,9 +354,9 @@ Partial Class Form1
         Me.CacheListBackup.FormattingEnabled = True
         Me.CacheListBackup.HorizontalScrollbar = True
         Me.CacheListBackup.IntegralHeight = False
-        Me.CacheListBackup.Location = New System.Drawing.Point(133, 296)
+        Me.CacheListBackup.Location = New System.Drawing.Point(133, 270)
         Me.CacheListBackup.Name = "CacheListBackup"
-        Me.CacheListBackup.Size = New System.Drawing.Size(10, 10)
+        Me.CacheListBackup.Size = New System.Drawing.Size(10, 11)
         Me.CacheListBackup.TabIndex = 11
         Me.CacheListBackup.Visible = False
         '
@@ -368,34 +365,35 @@ Partial Class Form1
         Me.FilterComboBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.FilterComboBox.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.FilterComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.FilterComboBox.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FilterComboBox.ForeColor = System.Drawing.Color.LightGray
         Me.FilterComboBox.FormattingEnabled = True
         Me.FilterComboBox.Items.AddRange(New Object() {".png", ".gif", ".jpeg", ".jpg", ".mp4", ".unknown", ".bmp", ".wmf", ".mpeg", ".webm"})
-        Me.FilterComboBox.Location = New System.Drawing.Point(7, 311)
+        Me.FilterComboBox.Location = New System.Drawing.Point(7, 286)
         Me.FilterComboBox.Name = "FilterComboBox"
-        Me.FilterComboBox.Size = New System.Drawing.Size(136, 21)
+        Me.FilterComboBox.Size = New System.Drawing.Size(136, 22)
         Me.FilterComboBox.TabIndex = 12
         '
         'FilterLabel
         '
         Me.FilterLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.FilterLabel.AutoSize = True
-        Me.FilterLabel.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FilterLabel.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FilterLabel.ForeColor = System.Drawing.Color.LightGray
-        Me.FilterLabel.Location = New System.Drawing.Point(4, 296)
+        Me.FilterLabel.Location = New System.Drawing.Point(4, 270)
         Me.FilterLabel.Name = "FilterLabel"
-        Me.FilterLabel.Size = New System.Drawing.Size(36, 13)
+        Me.FilterLabel.Size = New System.Drawing.Size(33, 14)
         Me.FilterLabel.TabIndex = 9
         Me.FilterLabel.Text = "Filter:"
         '
         'TotalFilesLabel
         '
         Me.TotalFilesLabel.AutoSize = True
-        Me.TotalFilesLabel.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TotalFilesLabel.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TotalFilesLabel.ForeColor = System.Drawing.Color.LightGray
         Me.TotalFilesLabel.Location = New System.Drawing.Point(4, 3)
         Me.TotalFilesLabel.Name = "TotalFilesLabel"
-        Me.TotalFilesLabel.Size = New System.Drawing.Size(38, 13)
+        Me.TotalFilesLabel.Size = New System.Drawing.Size(39, 15)
         Me.TotalFilesLabel.TabIndex = 8
         Me.TotalFilesLabel.Text = "Total: "
         '
@@ -405,15 +403,16 @@ Partial Class Form1
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.CacheExplorerList.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.CacheExplorerList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.CacheExplorerList.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CacheExplorerList.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CacheExplorerList.ForeColor = System.Drawing.Color.LightGray
         Me.CacheExplorerList.FormattingEnabled = True
         Me.CacheExplorerList.HorizontalScrollbar = True
         Me.CacheExplorerList.IntegralHeight = False
-        Me.CacheExplorerList.Location = New System.Drawing.Point(7, 19)
+        Me.CacheExplorerList.ItemHeight = 14
+        Me.CacheExplorerList.Location = New System.Drawing.Point(7, 20)
         Me.CacheExplorerList.Name = "CacheExplorerList"
         Me.CacheExplorerList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
-        Me.CacheExplorerList.Size = New System.Drawing.Size(136, 274)
+        Me.CacheExplorerList.Size = New System.Drawing.Size(136, 246)
         Me.CacheExplorerList.TabIndex = 7
         '
         'ImageSizeModeStrip
@@ -451,6 +450,40 @@ Partial Class Form1
         Me.FolderBrowserDialog1.Description = "Please Select a cache folder"
         Me.FolderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.LocalApplicationData
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Arial Narrow", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(155, 56)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(195, 22)
+        Me.Label3.TabIndex = 8
+        Me.Label3.Text = "Please wait... Files Copied: 0"
+        Me.Label3.Visible = False
+        '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ProgressBar1.Location = New System.Drawing.Point(155, 82)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(534, 25)
+        Me.ProgressBar1.TabIndex = 9
+        Me.ProgressBar1.Visible = False
+        '
+        'Logo
+        '
+        Me.Logo.BackColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(110, Byte), Integer))
+        Me.Logo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Logo.Image = Global.DiscordCacheExplorer.My.Resources.Resources.icons8_opened_folder_64
+        Me.Logo.Location = New System.Drawing.Point(-1, -1)
+        Me.Logo.Name = "Logo"
+        Me.Logo.Size = New System.Drawing.Size(69, 52)
+        Me.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.Logo.TabIndex = 8
+        Me.Logo.TabStop = False
+        '
         'ImageDisplay
         '
         Me.ImageDisplay.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -458,39 +491,19 @@ Partial Class Form1
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ImageDisplay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ImageDisplay.ContextMenuStrip = Me.ImageSizeModeStrip
-        Me.ImageDisplay.Location = New System.Drawing.Point(150, 49)
+        Me.ImageDisplay.Location = New System.Drawing.Point(150, 53)
         Me.ImageDisplay.Name = "ImageDisplay"
-        Me.ImageDisplay.Size = New System.Drawing.Size(552, 338)
+        Me.ImageDisplay.Size = New System.Drawing.Size(551, 315)
         Me.ImageDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.ImageDisplay.TabIndex = 1
         Me.ImageDisplay.TabStop = False
         '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(155, 52)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(212, 18)
-        Me.Label3.TabIndex = 8
-        Me.Label3.Text = "Please wait... Files Copied: 0"
-        Me.Label3.Visible = False
-        '
-        'ProgressBar1
-        '
-        Me.ProgressBar1.Location = New System.Drawing.Point(155, 76)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(535, 23)
-        Me.ProgressBar1.TabIndex = 9
-        Me.ProgressBar1.Visible = False
-        '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(702, 450)
+        Me.ClientSize = New System.Drawing.Size(701, 436)
         Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Panel3)
@@ -499,8 +512,9 @@ Partial Class Form1
         Me.Controls.Add(Me.AxWindowsMediaPlayer1)
         Me.Controls.Add(Me.PlainTextBox)
         Me.Controls.Add(Me.ImageDisplay)
+        Me.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(718, 489)
+        Me.MinimumSize = New System.Drawing.Size(717, 387)
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Cache Explorer - LunarHunter 2019"
@@ -509,12 +523,12 @@ Partial Class Form1
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        CType(Me.Logo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.ImageSizeModeStrip.ResumeLayout(False)
+        CType(Me.Logo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ImageDisplay, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

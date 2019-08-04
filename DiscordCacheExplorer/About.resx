@@ -130,6 +130,14 @@ Either try again or report to the developer. Report what you were doing before t
 
 Builds:
 
+v1.3
+Tried to add more more locations to scan for cache folders in.
+Fixed the Refresh Program List because it wouldn't clear the list but instead just add to it.
+Fixed a bug where selecting a new cache folder would not load the specific cache folder in question.
+Added ToC (Terms and Conditions).
+Changed Font to Arial.
+Change minimum size on main form.
+
 v1.2
 Filter boxes now update in realtime, no need to click search.
 Added Minimum Size to Change Cache Folder Form.
