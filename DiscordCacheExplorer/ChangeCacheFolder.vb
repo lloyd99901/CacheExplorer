@@ -61,6 +61,7 @@ Public Class ChangeCacheFolder
             MsgBox("Required dll(s) missing! Exiting...", MsgBoxStyle.Critical, "CRITICAL!")
             Close()
         End If
+        FilterComboBox.Select()
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles AutoDetectListbox.SelectedIndexChanged
@@ -75,7 +76,7 @@ Public Class ChangeCacheFolder
             For Each line As String In ProgramCacheList
                 AutoDetectListbox.Items.Add(line)
             Next
-            For Each item In AutoDetectListbox.Items
+            For Each item As String In AutoDetectListbox.Items
                 BackUPList.Items.Add(item)
             Next
             Label3.Visible = False
@@ -84,7 +85,7 @@ Public Class ChangeCacheFolder
             Hide()
         End If
     End Sub
-    Public Sub scanfolders()
+    Public Sub Scanfolders()
         Application.DoEvents()
 
         For Each folder In Directory.GetDirectories(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "*", SearchOption.TopDirectoryOnly)
@@ -168,4 +169,22 @@ Public Class ChangeCacheFolder
         Label3.Visible = False
     End Sub
 
+    Private Sub ChangeCacheFolder_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If Form1.Visible = False Or Form1.closeform = True Then
+            e.Cancel = False
+        Else
+            e.Cancel = True
+        End If
+    End Sub
+
+    Private Sub FilterComboBox_KeyDown(sender As Object, e As KeyEventArgs) Handles FilterComboBox.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Try
+                CacheFolderText.Text = AutoDetectListbox.SelectedItems(0)
+            Catch ex As Exception
+                CacheFolderText.Text = AutoDetectListbox.Items(0)
+            End Try
+            OKaybutton.PerformClick()
+        End If
+    End Sub
 End Class

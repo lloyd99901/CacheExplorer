@@ -129,6 +129,14 @@ I've encountered an error/exception, what do I do?
 Either try again or report to the developer. Report what you were doing before the error and what the error said.
 
 Builds:
+v1.4:
+Added Exclude .unknown
+Fixed a bug where closing Change Cache Folder while the main form was open would close the entire program.
+Fixed a bug where closing the main form didn't close the entire program, causing it to be open in the background doing nothing.
+Changed Delete all Cache files to Delete Selected Cache Files.
+Added update checker to check for new updates.
+When pressing enter on the Change Cache Folder Form Filter, It chooses the top most item and selects that as the cache folder.
+Made ToC look better.
 
 v1.3
 Tried to add more more locations to scan for cache folders in.
@@ -155,7 +163,7 @@ Added a filter to the Change Cache Folder form.
 Program now adds folders in cache to specify where the cache came from (e.g. CacheFiles\Opera\). That way, cache files won't get overwritten.
 Added progress bar when scanning cache.
 
-build 1000:
+build 1000 (v1.0):
 No changes
 </value>
   </data>

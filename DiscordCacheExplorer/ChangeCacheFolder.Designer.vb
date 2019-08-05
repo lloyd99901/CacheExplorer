@@ -146,6 +146,7 @@ Partial Class ChangeCacheFolder
         Me.FilterComboBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.FilterComboBox.ForeColor = System.Drawing.Color.White
         Me.FilterComboBox.Location = New System.Drawing.Point(12, 272)
+        Me.FilterComboBox.Multiline = True
         Me.FilterComboBox.Name = "FilterComboBox"
         Me.FilterComboBox.Size = New System.Drawing.Size(512, 20)
         Me.FilterComboBox.TabIndex = 17

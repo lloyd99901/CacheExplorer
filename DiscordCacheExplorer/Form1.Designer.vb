@@ -39,12 +39,16 @@ Partial Class Form1
         Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.AutoPlayTimer = New System.Windows.Forms.Timer(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.UpdateAvailable = New System.Windows.Forms.LinkLabel()
         Me.AboutButton = New System.Windows.Forms.Button()
         Me.CacheExplorerLabel = New System.Windows.Forms.Label()
+        Me.Logo = New System.Windows.Forms.PictureBox()
         Me.ChangeCacheFoldButton = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.UnableUpdates = New System.Windows.Forms.Label()
         Me.BuildInformationLabel = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.CacheListBackup = New System.Windows.Forms.ListBox()
         Me.FilterComboBox = New System.Windows.Forms.ComboBox()
         Me.FilterLabel = New System.Windows.Forms.Label()
@@ -58,15 +62,15 @@ Partial Class Form1
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
-        Me.Logo = New System.Windows.Forms.PictureBox()
         Me.ImageDisplay = New System.Windows.Forms.PictureBox()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Panel1.SuspendLayout()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
+        CType(Me.Logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.ImageSizeModeStrip.SuspendLayout()
-        CType(Me.Logo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImageDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -123,13 +127,13 @@ Partial Class Form1
         Me.SecureDeleteButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
         Me.SecureDeleteButton.FlatAppearance.BorderSize = 0
         Me.SecureDeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.SecureDeleteButton.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SecureDeleteButton.Font = New System.Drawing.Font("Arial Narrow", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SecureDeleteButton.ForeColor = System.Drawing.Color.Aqua
         Me.SecureDeleteButton.Location = New System.Drawing.Point(147, 32)
         Me.SecureDeleteButton.Name = "SecureDeleteButton"
         Me.SecureDeleteButton.Size = New System.Drawing.Size(111, 33)
         Me.SecureDeleteButton.TabIndex = 5
-        Me.SecureDeleteButton.Text = "Securely Delete All"
+        Me.SecureDeleteButton.Text = "Securely Delete Selected"
         Me.SecureDeleteButton.UseVisualStyleBackColor = False
         '
         'DeleteALLbutton
@@ -143,7 +147,7 @@ Partial Class Form1
         Me.DeleteALLbutton.Name = "DeleteALLbutton"
         Me.DeleteALLbutton.Size = New System.Drawing.Size(111, 31)
         Me.DeleteALLbutton.TabIndex = 5
-        Me.DeleteALLbutton.Text = "Delete All"
+        Me.DeleteALLbutton.Text = "Delete Selected"
         Me.DeleteALLbutton.UseVisualStyleBackColor = False
         '
         'OpenTypeCheck
@@ -187,11 +191,11 @@ Partial Class Form1
         'ExportButt
         '
         Me.ExportButt.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ExportButt.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
+        Me.ExportButt.BackColor = System.Drawing.Color.FromArgb(CType(CType(70, Byte), Integer), CType(CType(70, Byte), Integer), CType(CType(120, Byte), Integer))
         Me.ExportButt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ExportButt.FlatAppearance.BorderSize = 0
         Me.ExportButt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ExportButt.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ExportButt.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ExportButt.ForeColor = System.Drawing.Color.Aqua
         Me.ExportButt.Location = New System.Drawing.Point(575, -1)
         Me.ExportButt.Name = "ExportButt"
@@ -205,7 +209,7 @@ Partial Class Form1
         Me.ScanCachebutton.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
         Me.ScanCachebutton.FlatAppearance.BorderSize = 0
         Me.ScanCachebutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ScanCachebutton.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ScanCachebutton.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ScanCachebutton.ForeColor = System.Drawing.Color.Aqua
         Me.ScanCachebutton.Location = New System.Drawing.Point(-2, 0)
         Me.ScanCachebutton.Name = "ScanCachebutton"
@@ -257,6 +261,7 @@ Partial Class Form1
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(70, Byte), Integer))
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.UpdateAvailable)
         Me.Panel2.Controls.Add(Me.AboutButton)
         Me.Panel2.Controls.Add(Me.CacheExplorerLabel)
         Me.Panel2.Controls.Add(Me.Logo)
@@ -267,6 +272,21 @@ Partial Class Form1
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(701, 52)
         Me.Panel2.TabIndex = 7
+        '
+        'UpdateAvailable
+        '
+        Me.UpdateAvailable.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.UpdateAvailable.AutoSize = True
+        Me.UpdateAvailable.Font = New System.Drawing.Font("Arial", 11.0!, CType(((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic) _
+                Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UpdateAvailable.LinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.UpdateAvailable.Location = New System.Drawing.Point(399, 6)
+        Me.UpdateAvailable.Name = "UpdateAvailable"
+        Me.UpdateAvailable.Size = New System.Drawing.Size(125, 17)
+        Me.UpdateAvailable.TabIndex = 167
+        Me.UpdateAvailable.TabStop = True
+        Me.UpdateAvailable.Text = "Update Available"
+        Me.UpdateAvailable.Visible = False
         '
         'AboutButton
         '
@@ -294,6 +314,18 @@ Partial Class Form1
         Me.CacheExplorerLabel.TabIndex = 9
         Me.CacheExplorerLabel.Text = "Cache Explorer"
         '
+        'Logo
+        '
+        Me.Logo.BackColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(110, Byte), Integer))
+        Me.Logo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Logo.Image = Global.DiscordCacheExplorer.My.Resources.Resources.icons8_opened_folder_64
+        Me.Logo.Location = New System.Drawing.Point(-1, -1)
+        Me.Logo.Name = "Logo"
+        Me.Logo.Size = New System.Drawing.Size(69, 52)
+        Me.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.Logo.TabIndex = 8
+        Me.Logo.TabStop = False
+        '
         'ChangeCacheFoldButton
         '
         Me.ChangeCacheFoldButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -301,6 +333,7 @@ Partial Class Form1
         Me.ChangeCacheFoldButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ChangeCacheFoldButton.FlatAppearance.BorderSize = 0
         Me.ChangeCacheFoldButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ChangeCacheFoldButton.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ChangeCacheFoldButton.ForeColor = System.Drawing.Color.Aqua
         Me.ChangeCacheFoldButton.Location = New System.Drawing.Point(615, -1)
         Me.ChangeCacheFoldButton.Name = "ChangeCacheFoldButton"
@@ -312,12 +345,25 @@ Partial Class Form1
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.Panel4.Controls.Add(Me.UnableUpdates)
         Me.Panel4.Controls.Add(Me.BuildInformationLabel)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel4.Location = New System.Drawing.Point(0, 28)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(699, 22)
         Me.Panel4.TabIndex = 9
+        '
+        'UnableUpdates
+        '
+        Me.UnableUpdates.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.UnableUpdates.AutoSize = True
+        Me.UnableUpdates.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.UnableUpdates.Location = New System.Drawing.Point(381, 3)
+        Me.UnableUpdates.Name = "UnableUpdates"
+        Me.UnableUpdates.Size = New System.Drawing.Size(146, 14)
+        Me.UnableUpdates.TabIndex = 11
+        Me.UnableUpdates.Text = "Unable to check for updates."
+        Me.UnableUpdates.Visible = False
         '
         'BuildInformationLabel
         '
@@ -326,13 +372,14 @@ Partial Class Form1
         Me.BuildInformationLabel.ForeColor = System.Drawing.Color.LightGray
         Me.BuildInformationLabel.Location = New System.Drawing.Point(76, 2)
         Me.BuildInformationLabel.Name = "BuildInformationLabel"
-        Me.BuildInformationLabel.Size = New System.Drawing.Size(108, 15)
+        Me.BuildInformationLabel.Size = New System.Drawing.Size(171, 15)
         Me.BuildInformationLabel.TabIndex = 10
-        Me.BuildInformationLabel.Text = "v1.3 - LunarHunter"
+        Me.BuildInformationLabel.Text = "Change ProgramVer in Form1"
         '
         'Panel3
         '
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel3.Controls.Add(Me.CheckBox1)
         Me.Panel3.Controls.Add(Me.CacheListBackup)
         Me.Panel3.Controls.Add(Me.FilterComboBox)
         Me.Panel3.Controls.Add(Me.FilterLabel)
@@ -343,6 +390,19 @@ Partial Class Form1
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(149, 316)
         Me.Panel3.TabIndex = 8
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Font = New System.Drawing.Font("Arial Narrow", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBox1.ForeColor = System.Drawing.Color.White
+        Me.CheckBox1.Location = New System.Drawing.Point(37, 267)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(104, 19)
+        Me.CheckBox1.TabIndex = 13
+        Me.CheckBox1.Text = "Exclude .unknown"
+        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'CacheListBackup
         '
@@ -472,18 +532,6 @@ Partial Class Form1
         Me.ProgressBar1.TabIndex = 9
         Me.ProgressBar1.Visible = False
         '
-        'Logo
-        '
-        Me.Logo.BackColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Logo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Logo.Image = Global.DiscordCacheExplorer.My.Resources.Resources.icons8_opened_folder_64
-        Me.Logo.Location = New System.Drawing.Point(-1, -1)
-        Me.Logo.Name = "Logo"
-        Me.Logo.Size = New System.Drawing.Size(69, 52)
-        Me.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.Logo.TabIndex = 8
-        Me.Logo.TabStop = False
-        '
         'ImageDisplay
         '
         Me.ImageDisplay.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -497,6 +545,9 @@ Partial Class Form1
         Me.ImageDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.ImageDisplay.TabIndex = 1
         Me.ImageDisplay.TabStop = False
+        '
+        'BackgroundWorker1
+        '
         '
         'Form1
         '
@@ -523,12 +574,12 @@ Partial Class Form1
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        CType(Me.Logo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.ImageSizeModeStrip.ResumeLayout(False)
-        CType(Me.Logo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ImageDisplay, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -570,4 +621,8 @@ Partial Class Form1
     Friend WithEvents AboutButton As Button
     Friend WithEvents Label3 As Label
     Friend WithEvents ProgressBar1 As ProgressBar
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents UpdateAvailable As LinkLabel
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents UnableUpdates As Label
 End Class

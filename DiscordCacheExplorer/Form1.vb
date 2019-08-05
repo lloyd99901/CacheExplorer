@@ -8,12 +8,17 @@ Imports System.Text
 'Refine detection of file format
 'Add sep folders for each program Done
 'Fix bug that prevents deletion of a file that is currently in use by the program
-
+'Remove unknown filter when being excluded
+'Add all cached cache folders in app location, use boolean, overwrite tempdiscache
+'Delete Selected
 Public Class Form1
     Public discacheloc = "" '"C:\Users\" & Environment.UserName & "\AppData\Roaming\discord\Cache\"
     Public tempdiscacheloc = Application.StartupPath & "\CacheFiles\"
-    Dim filestrea As FileStream
+    Public closeform = False
+    ReadOnly programver = 1.4
+    ReadOnly filestrea As FileStream
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        BuildInformationLabel.Text = "v " & programver & " - LunarHunter"
         Application.DoEvents()
         If My.Computer.FileSystem.DirectoryExists(tempdiscacheloc) Then
             CacheExplorerList.Items.Clear()
@@ -30,6 +35,7 @@ Public Class Form1
             ChangeCacheFolder.Show()
         End If
         TotalFilesLabel.Text = "Total: " & CacheExplorerList.Items.Count
+        BackgroundWorker1.RunWorkerAsync()
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CacheExplorerList.SelectedIndexChanged
@@ -198,35 +204,45 @@ Public Class Form1
     End Function
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles DeleteALLbutton.Click
-        If MsgBox("Are you sure you want to delete all cache files? You should close discord before this operation. (This will increase the time it will take for an image to load after)", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, "Warning") = MsgBoxResult.Yes Then
+        If MsgBox("Are you sure you want to delete all selected cache files? You should close discord before this operation. (This will increase the time it will take for an image to load after)", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, "Warning") = MsgBoxResult.Yes Then
             Dim totaldelete = 0
             Dim faildelete = 0
             For Each file In My.Computer.FileSystem.GetFiles(discacheloc)
-                Try
-                    My.Computer.FileSystem.DeleteFile(file)
-                    totaldelete += 1
-                Catch ex As Exception
-                    faildelete += 1
-                End Try
+                For Each selecteditem In CacheExplorerList.SelectedItem.ToString.Split("("c)(0)
+                    'MsgBox("DEBUG: " & file & selecteditem)
+                    If file.Contains(selecteditem) Then
+                        Try
+                            My.Computer.FileSystem.DeleteFile(file)
+                            totaldelete += 1
+                        Catch ex As Exception
+                            faildelete += 1
+                        End Try
+                    End If
+                Next
             Next
             MsgBox("A total of " & totaldelete & " were successfully deleted, Here is the total of files that can't get deleted: " & faildelete)
         End If
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles SecureDeleteButton.Click
-        If MsgBox("Are you sure you want to securely delete all cache files? You should close discord and this might take awhile for this operation. (This will increase the time it will take for an image to load after)", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, "Warning") = MsgBoxResult.Yes Then
+        If MsgBox("Are you sure you want to securely delete all selected cache files? You should close discord and this might take awhile for this operation. (This will increase the time it will take for an image to load after)", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, "Warning") = MsgBoxResult.Yes Then
             Dim totaldelete = 0
             Dim faildelete = 0
             For Each file In My.Computer.FileSystem.GetFiles(discacheloc)
-                Try
-                    For i As Integer = 0 To 5
-                        My.Computer.FileSystem.WriteAllText(file, "", False)
-                    Next
-                    My.Computer.FileSystem.DeleteFile(file)
-                    totaldelete += 1
-                Catch ex As Exception
-                    faildelete += 1
-                End Try
+                For Each selecteditem In CacheExplorerList.SelectedItem.ToString.Split("("c)(0)
+                    'MsgBox("DEBUG: " & file & selecteditem)
+                    If file.Contains(selecteditem) Then
+                        Try
+                            For i As Integer = 0 To 5
+                                My.Computer.FileSystem.WriteAllText(file, "", False)
+                            Next
+                            My.Computer.FileSystem.DeleteFile(file)
+                            totaldelete += 1
+                        Catch ex As Exception
+                            faildelete += 1
+                        End Try
+                    End If
+                Next
             Next
             MsgBox("A total of " & totaldelete & " were successfully deleted, Here is the total of files that can't get deleted: " & faildelete)
         End If
@@ -275,10 +291,6 @@ Public Class Form1
         ChangeCacheFolder.Show()
     End Sub
 
-    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        ChangeCacheFolder.Close()
-    End Sub
-
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles AboutButton.Click
         About.Show()
     End Sub
@@ -291,8 +303,64 @@ Public Class Form1
         CacheExplorerList.Items.Clear()
         For Each item As String In CacheListBackup.Items
             If item.Contains(FilterComboBox.Text) Then
-                CacheExplorerList.Items.Add(item)
+                If CheckBox1.Checked = True And item.Contains(".unknown") Then
+                    'dont add
+                Else
+                    CacheExplorerList.Items.Add(item)
+                End If
             End If
         Next
     End Sub
+
+    Private Sub CheckBox1_CheckedChanged_1(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        If CheckBox1.Checked = True Then
+            CacheExplorerList.Items.Clear()
+            For Each item As String In CacheListBackup.Items
+                If item.Contains(".unknown") Then
+                Else
+                    CacheExplorerList.Items.Add(item)
+                End If
+            Next
+        Else
+            CacheExplorerList.Items.Clear()
+            For Each item As String In CacheListBackup.Items
+                CacheExplorerList.Items.Add(item)
+            Next
+        End If
+    End Sub
+
+    Private Sub Form1_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        closeform = True
+        ChangeCacheFolder.Close()
+        Application.Exit()
+    End Sub
+
+    Private Sub UpdateAvailable_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles UpdateAvailable.LinkClicked
+        Dim url As String = "https://sourceforge.net/projects/cacheexplorer/"
+        Process.Start(url)
+    End Sub
+
+    Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+        Try
+            Dim request As Net.HttpWebRequest = Net.WebRequest.Create("https://raw.githubusercontent.com/lloyd99901/CacheExplorer/master/README.md")
+            Dim response As Net.HttpWebResponse = request.GetResponse()
+            Dim sr As StreamReader = New StreamReader(response.GetResponseStream())
+            e.Result = sr.ReadToEnd
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
+        Try
+            If e.Result.Contains("Current Version: v" & programver) Then
+            Else
+                UpdateAvailable.Visible = True
+            End If
+        Catch ex As Exception
+            UnableUpdates.Visible = True
+        End Try
+
+    End Sub
+
 End Class
