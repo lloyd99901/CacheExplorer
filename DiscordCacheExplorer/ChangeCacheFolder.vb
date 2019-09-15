@@ -58,8 +58,8 @@ Public Class ChangeCacheFolder
         'Check if required dlls are missing
 
         If My.Computer.FileSystem.FileExists(Application.StartupPath & "\AxInterop.WMPLib.dll") = False Or My.Computer.FileSystem.FileExists(Application.StartupPath & "\Interop.WMPLib.dll") = False Then
-            MsgBox("Required dll(s) missing! Exiting...", MsgBoxStyle.Critical, "CRITICAL!")
-            Close()
+            MsgBox("Required dll(s) missing! Open task manager, search for CacheExplorer.exe in the details tab, right click, click end process and yes.", MsgBoxStyle.Critical, "CRITICAL - CacheExplorer")
+            Application.Exit()
         End If
         FilterComboBox.Select()
     End Sub
@@ -134,6 +134,7 @@ Public Class ChangeCacheFolder
         AutoDetectListbox.Items.Clear()
         BackUPList.Items.Clear()
         Label3.Visible = True
+        Application.DoEvents()
 
         For Each folder In Directory.GetDirectories(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "*", SearchOption.TopDirectoryOnly)
             If Path.GetFileName(folder).ToLower.Contains("cache") Then
@@ -180,11 +181,25 @@ Public Class ChangeCacheFolder
     Private Sub FilterComboBox_KeyDown(sender As Object, e As KeyEventArgs) Handles FilterComboBox.KeyDown
         If e.KeyCode = Keys.Enter Then
             Try
-                CacheFolderText.Text = AutoDetectListbox.SelectedItems(0)
-            Catch ex As Exception
                 CacheFolderText.Text = AutoDetectListbox.Items(0)
+                OKaybutton.PerformClick()
+            Catch ex As Exception
+                MsgBox(ex.Message)
+                Close()
             End Try
-            OKaybutton.PerformClick()
+        End If
+    End Sub
+
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\ProgramListCache.ini") Then
+            Dim ProgramCacheList = File.ReadAllLines(Application.StartupPath & "\ProgramListCache.ini")
+            For Each line As String In ProgramCacheList
+                AutoDetectListbox.Items.Add(line)
+            Next
+            For Each item As String In AutoDetectListbox.Items
+                BackUPList.Items.Add(item)
+            Next
+            Label3.Visible = False
         End If
     End Sub
 End Class

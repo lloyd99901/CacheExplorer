@@ -39,9 +39,10 @@ Partial Class Form1
         Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.AutoPlayTimer = New System.Windows.Forms.Timer(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.UpdateAvailable = New System.Windows.Forms.LinkLabel()
         Me.AboutButton = New System.Windows.Forms.Button()
-        Me.CacheExplorerLabel = New System.Windows.Forms.Label()
         Me.Logo = New System.Windows.Forms.PictureBox()
         Me.ChangeCacheFoldButton = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
@@ -62,8 +63,9 @@ Partial Class Form1
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
-        Me.ImageDisplay = New System.Windows.Forms.PictureBox()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.FileSystemWatcher1 = New System.IO.FileSystemWatcher()
+        Me.ImageDisplay = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
@@ -71,6 +73,7 @@ Partial Class Form1
         Me.Panel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.ImageSizeModeStrip.SuspendLayout()
+        CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImageDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -191,7 +194,7 @@ Partial Class Form1
         'ExportButt
         '
         Me.ExportButt.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ExportButt.BackColor = System.Drawing.Color.FromArgb(CType(CType(70, Byte), Integer), CType(CType(70, Byte), Integer), CType(CType(120, Byte), Integer))
+        Me.ExportButt.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
         Me.ExportButt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ExportButt.FlatAppearance.BorderSize = 0
         Me.ExportButt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -259,11 +262,12 @@ Partial Class Form1
         '
         'Panel2
         '
-        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Controls.Add(Me.Button1)
         Me.Panel2.Controls.Add(Me.UpdateAvailable)
         Me.Panel2.Controls.Add(Me.AboutButton)
-        Me.Panel2.Controls.Add(Me.CacheExplorerLabel)
         Me.Panel2.Controls.Add(Me.Logo)
         Me.Panel2.Controls.Add(Me.ChangeCacheFoldButton)
         Me.Panel2.Controls.Add(Me.Panel4)
@@ -273,16 +277,42 @@ Partial Class Form1
         Me.Panel2.Size = New System.Drawing.Size(701, 52)
         Me.Panel2.TabIndex = 7
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Arial Narrow", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.LightGray
+        Me.Label1.Location = New System.Drawing.Point(74, 2)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(126, 23)
+        Me.Label1.TabIndex = 12
+        Me.Label1.Text = "Cache Explorer"
+        '
+        'Button1
+        '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button1.Enabled = False
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.ForeColor = System.Drawing.Color.Aqua
+        Me.Button1.Location = New System.Drawing.Point(505, 28)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(109, 23)
+        Me.Button1.TabIndex = 168
+        Me.Button1.Text = "Settings"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'UpdateAvailable
         '
         Me.UpdateAvailable.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.UpdateAvailable.AutoSize = True
-        Me.UpdateAvailable.Font = New System.Drawing.Font("Arial", 11.0!, CType(((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic) _
-                Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UpdateAvailable.Font = New System.Drawing.Font("Arial", 11.0!, CType((System.Drawing.FontStyle.Italic Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.UpdateAvailable.LinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.UpdateAvailable.Location = New System.Drawing.Point(399, 6)
+        Me.UpdateAvailable.Location = New System.Drawing.Point(380, 6)
         Me.UpdateAvailable.Name = "UpdateAvailable"
-        Me.UpdateAvailable.Size = New System.Drawing.Size(125, 17)
+        Me.UpdateAvailable.Size = New System.Drawing.Size(117, 17)
         Me.UpdateAvailable.TabIndex = 167
         Me.UpdateAvailable.TabStop = True
         Me.UpdateAvailable.Text = "Update Available"
@@ -296,23 +326,12 @@ Partial Class Form1
         Me.AboutButton.FlatAppearance.BorderSize = 0
         Me.AboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.AboutButton.ForeColor = System.Drawing.Color.Aqua
-        Me.AboutButton.Location = New System.Drawing.Point(530, -1)
+        Me.AboutButton.Location = New System.Drawing.Point(505, -2)
         Me.AboutButton.Name = "AboutButton"
-        Me.AboutButton.Size = New System.Drawing.Size(84, 52)
+        Me.AboutButton.Size = New System.Drawing.Size(109, 29)
         Me.AboutButton.TabIndex = 10
         Me.AboutButton.Text = "About and Help"
         Me.AboutButton.UseVisualStyleBackColor = False
-        '
-        'CacheExplorerLabel
-        '
-        Me.CacheExplorerLabel.AutoSize = True
-        Me.CacheExplorerLabel.Font = New System.Drawing.Font("Arial Narrow", 13.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CacheExplorerLabel.ForeColor = System.Drawing.Color.LightGray
-        Me.CacheExplorerLabel.Location = New System.Drawing.Point(73, 3)
-        Me.CacheExplorerLabel.Name = "CacheExplorerLabel"
-        Me.CacheExplorerLabel.Size = New System.Drawing.Size(117, 22)
-        Me.CacheExplorerLabel.TabIndex = 9
-        Me.CacheExplorerLabel.Text = "Cache Explorer"
         '
         'Logo
         '
@@ -358,7 +377,7 @@ Partial Class Form1
         Me.UnableUpdates.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.UnableUpdates.AutoSize = True
         Me.UnableUpdates.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.UnableUpdates.Location = New System.Drawing.Point(381, 3)
+        Me.UnableUpdates.Location = New System.Drawing.Point(353, 3)
         Me.UnableUpdates.Name = "UnableUpdates"
         Me.UnableUpdates.Size = New System.Drawing.Size(146, 14)
         Me.UnableUpdates.TabIndex = 11
@@ -532,6 +551,15 @@ Partial Class Form1
         Me.ProgressBar1.TabIndex = 9
         Me.ProgressBar1.Visible = False
         '
+        'BackgroundWorker1
+        '
+        '
+        'FileSystemWatcher1
+        '
+        Me.FileSystemWatcher1.EnableRaisingEvents = True
+        Me.FileSystemWatcher1.IncludeSubdirectories = True
+        Me.FileSystemWatcher1.SynchronizingObject = Me
+        '
         'ImageDisplay
         '
         Me.ImageDisplay.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -545,9 +573,6 @@ Partial Class Form1
         Me.ImageDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.ImageDisplay.TabIndex = 1
         Me.ImageDisplay.TabStop = False
-        '
-        'BackgroundWorker1
-        '
         '
         'Form1
         '
@@ -580,6 +605,7 @@ Partial Class Form1
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.ImageSizeModeStrip.ResumeLayout(False)
+        CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ImageDisplay, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -602,7 +628,6 @@ Partial Class Form1
     Friend WithEvents ClearCacheButton As Button
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Logo As PictureBox
-    Friend WithEvents CacheExplorerLabel As Label
     Friend WithEvents BuildInformationLabel As Label
     Friend WithEvents Panel3 As Panel
     Friend WithEvents TotalFilesLabel As Label
@@ -625,4 +650,7 @@ Partial Class Form1
     Friend WithEvents UpdateAvailable As LinkLabel
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents UnableUpdates As Label
+    Friend WithEvents FileSystemWatcher1 As IO.FileSystemWatcher
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Label1 As Label
 End Class

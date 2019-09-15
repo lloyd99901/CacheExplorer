@@ -117,28 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="RichTextBox1.Text" xml:space="preserve">
-    <value>CacheExplorer Terms:
-By agreeing and using this program, YOU AGREE TO BE BOUND BY THE GNU GENERAL PUBLIC LICENSE V3.0 AND ALL OF MY TERMS STATED.
-PLEASE READ THIS SOFTWARE AGREEMENT CAREFULLY BEFORE USING THE CacheExplorer SOFTWARE. BY USING THE CacheExplorer SOFTWARE, YOU ARE AGREEING TO BE BOUND BY THE TERMS OF THIS AGREEMENT. IF YOU DO NOT AGREE TO THE TERMS OF THIS AGREEMENT, DO NOT USE THE CacheExplorer SOFTWARE.
-
-WARRANTY &amp; OTHER:
-Use of this program or material is, at all times, at your own risk. If you are dissatisfied with any aspect of the program or any of these terms and conditions, your only remedy is to discontinue the use of the program. In no event shall the author, be liable to any user or third-party, for any damages whatsoever resulting but not limited to the use or inability to use this program or the material.
-THE SOFTWARE IS PROVIDED AS-IS WITHOUT WARRANTY OR GUARANTEES OF ANY KIND, THE AUTHOR WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES (including, but not limited to, loss of use or profits) ARISING FROM OR RELATING TO THE SOFTWARE OR THIS AGREEMENT. 
-INSTALLATION AND USE RIGHTS:
-General. You may use this software copy under the GNU General Public License v3.0. 
-UPDATES: The software will check for updates. You may obtain updates only from LunarHunter or authorized sources.
-
-SUPPORT SERVICES: LunarHunter and any of its affiliates (If I have any) are not obligated under this agreement to provide any support services for the software or any damages it causes. Any support provided is “as is”, “with all faults”, and without warranty of any kind.
-
-GITHUB/SOURCE CODE:
-This program is under GPL-3.0 license. thus you're under GPL-3.0 rules/terms set by said license. Modifying the code at all means that I (LunarHunter) is not responsible for anything that happens to the end-user that uses said modified version. The person who modified it is (Unless they have a ToC).
-
-Tl;Dr: If this program breaks something, I'm not responsible! AT ALL! No exceptions! And if you modify the code, I am NOT RESPONSIBLE for anything that happens.
-
-
-</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

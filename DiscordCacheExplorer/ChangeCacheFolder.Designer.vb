@@ -33,6 +33,7 @@ Partial Class ChangeCacheFolder
         Me.FilterLabel = New System.Windows.Forms.Label()
         Me.FilterComboBox = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'CacheFolderText
@@ -165,12 +166,27 @@ Partial Class ChangeCacheFolder
         Me.Button1.Text = "Refresh Program List"
         Me.Button1.UseVisualStyleBackColor = False
         '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(100, Byte), Integer))
+        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.ForeColor = System.Drawing.Color.Aqua
+        Me.Button2.Location = New System.Drawing.Point(216, 2)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(178, 22)
+        Me.Button2.TabIndex = 18
+        Me.Button2.Text = "Reload ProgramCacheList.ini"
+        Me.Button2.UseVisualStyleBackColor = False
+        '
         'ChangeCacheFolder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(536, 352)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.FilterComboBox)
         Me.Controls.Add(Me.FilterLabel)
@@ -202,4 +218,5 @@ Partial Class ChangeCacheFolder
     Friend WithEvents FilterLabel As Label
     Friend WithEvents FilterComboBox As TextBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
 End Class

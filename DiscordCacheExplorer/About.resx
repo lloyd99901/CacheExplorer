@@ -128,43 +128,56 @@ A cache file has temporary information that a program sets aside because it assu
 I've encountered an error/exception, what do I do?
 Either try again or report to the developer. Report what you were doing before the error and what the error said.
 
+Why is an image/gif/any file corrupted?
+From experience, loading an image/gif/file too quickly could result in the program saving the cache file but discards it halfway through due to it not being not shown anymore. So, If you quickly scrolled a webpage down, half the time some of the caches would be corrupted.
+
 Builds:
+v1.5:
+Updated ToC
+Made sure to update app events to show loading label when the user clicked on reload program cache folders.
+Added real-time updating (e.g. if an item was added after loading, it will copy the new file to cache and add it to the list without any slowdown)
+Added Reload ProgramCacheList.ini just in case the listbox glitches out.
+Added Settings (Disabled for now)
+Added .error just in case an error occurred in the format-detection
+
 v1.4:
 Added Exclude .unknown
 Fixed a bug where closing Change Cache Folder while the main form was open would close the entire program.
 Fixed a bug where closing the main form didn't close the entire program, causing it to be open in the background doing nothing.
 Changed Delete all Cache files to Delete Selected Cache Files.
 Added update checker to check for new updates.
-When pressing enter on the Change Cache Folder Form Filter, It chooses the top most item and selects that as the cache folder.
+When pressing enter on the Change Cache Folder Form Filter, It chooses the topmost item and selects that as the cache folder.
 Made ToC look better.
 
 v1.3
-Tried to add more more locations to scan for cache folders in.
+Tried to add more locations to scan for cache folders in.
 Fixed the Refresh Program List because it wouldn't clear the list but instead just add to it.
 Fixed a bug where selecting a new cache folder would not load the specific cache folder in question.
 Added ToC (Terms and Conditions).
 Changed Font to Arial.
-Change minimum size on main form.
+Change minimum size on the main form.
 
 v1.2
-Filter boxes now update in realtime, no need to click search.
+Filter boxes now update in real-time, no need to click search.
 Added Minimum Size to Change Cache Folder Form.
 Fixed Incorrect Anchor.
 Removed unused code.
-Program now updates while doing tasks like scanning (e.g. when scanning, it will tell you how many files have been scanned and how many are there in total)
+The program now updates while doing tasks like scanning (e.g. when scanning, it will tell you how many files have been scanned and how many are there in total)
 Added cache to the Change Cache Folder form to make the program load faster.
-Program will now add folders in the programs cache folder to specify where the cache came from (e.g. CacheFiles\Opera\GPUCache\)
+The program will now add folders in the programs cache folder to specify where the cache came from (e.g. CacheFiles\Opera\GPUCache\)
 
 v1.1
-Changed from build to version because github doesnt allow it.
-Change Cache Folder form now checks for all folders in appdata with cache in its name.
-Added please wait labels when loading stuff that takes awhile.
+Changed from build to version because GitHub doesn't allow it.
+Change Cache Folder form now checks for all folders in AppData with cache in its name.
+Added please wait labels when loading stuff that takes a while.
 Added a filter to the Change Cache Folder form.
-Program now adds folders in cache to specify where the cache came from (e.g. CacheFiles\Opera\). That way, cache files won't get overwritten.
+The program now adds folders in cache to specify where the cache came from (e.g. CacheFiles\Opera\). That way, cache files won't get overwritten.
 Added progress bar when scanning cache.
 
 build 1000 (v1.0):
 No changes
+
+
 </value>
   </data>
 </root>

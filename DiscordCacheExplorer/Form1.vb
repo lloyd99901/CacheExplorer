@@ -9,16 +9,25 @@ Imports System.Text
 'Add sep folders for each program Done
 'Fix bug that prevents deletion of a file that is currently in use by the program
 'Remove unknown filter when being excluded
-'Add all cached cache folders in app location, use boolean, overwrite tempdiscache
-'Delete Selected
+'Add all cached cache folders in app location, use boolean, overwrite tempdiscache (Think I done that one)
+'Delete Selected DONE
 Public Class Form1
     Public discacheloc = "" '"C:\Users\" & Environment.UserName & "\AppData\Roaming\discord\Cache\"
     Public tempdiscacheloc = Application.StartupPath & "\CacheFiles\"
     Public closeform = False
-    ReadOnly programver = 1.4
+    Public programver = "v1.5"
     ReadOnly filestrea As FileStream
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        BuildInformationLabel.Text = "v " & programver & " - LunarHunter"
+        Try
+            Dim lines = File.ReadAllLines(Application.StartupPath & "\Settings.ini")
+            If lines(0) = True Then
+                programver = "DEBUG MODE"
+            End If
+        Catch ex As Exception
+
+        End Try
+        FileSystemWatcher1.Path = discacheloc
+        BuildInformationLabel.Text = programver & " - LunarHunter"
         Application.DoEvents()
         If My.Computer.FileSystem.DirectoryExists(tempdiscacheloc) Then
             CacheExplorerList.Items.Clear()
@@ -27,9 +36,11 @@ Public Class Form1
                 Dim filestrea As New FileStream(file, FileMode.Open, FileAccess.Read)
                 CacheExplorerList.Items.Add(Path.GetFileName(file) & " (" & GetFileFormat(filestrea) & ")")
                 filestrea.Close()
+                Application.DoEvents()
             Next
             For Each item In CacheExplorerList.Items
                 CacheListBackup.Items.Add(item)
+                Application.DoEvents()
             Next
         Else
             ChangeCacheFolder.Show()
@@ -43,82 +54,85 @@ Public Class Form1
     End Sub
 
     Private Sub LoadImage()
-        AxWindowsMediaPlayer1.Ctlcontrols.stop()
-
-        If OverrideCheck.Checked = True Then
-            If OpenTypeCheck.Text = "Plain Text" Then
-                PlainTextBox.Visible = True
-                AxWindowsMediaPlayer1.Visible = False
-                Try
-                    PlainTextBox.LoadFile(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), RichTextBoxStreamType.PlainText)
-                Catch ex1 As Exception
-                    ImageDisplay.Image = ImageDisplay.ErrorImage
-                End Try
-            ElseIf OpenTypeCheck.Text = "Image" Then
-                Try
-                    PlainTextBox.Visible = False
+        Try
+            AxWindowsMediaPlayer1.Ctlcontrols.stop()
+            If OverrideCheck.Checked = True Then
+                If OpenTypeCheck.Text = "Plain Text" Then
+                    PlainTextBox.Visible = True
                     AxWindowsMediaPlayer1.Visible = False
-                    Dim filestrea As New FileStream(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), FileMode.Open, FileAccess.Read)
-                    ImageDisplay.Image = Image.FromStream(filestrea)
-                Catch ex As Exception
-                    ImageDisplay.Image = ImageDisplay.ErrorImage
-                End Try
-            ElseIf OpenTypeCheck.Text = "Video" Then
-                AxWindowsMediaPlayer1.Visible = True
-                PlainTextBox.Visible = False
-                AxWindowsMediaPlayer1.URL = tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0)
-                If AutoPlayCheck.Checked Then
-                    AutoPlayTimer.Start()
-                Else
-                    AutoPlayTimer.Stop()
-                End If
-            End If
-        Else
-            ImageDisplay.Visible = True
-            'MsgBox(ListBox1.SelectedItem.ToString.Split("("c)(1).Remove(ListBox1.SelectedItem.ToString.Split("("c)(1).Length - 1))
-            Dim selectedfile = (CacheExplorerList.SelectedItem.ToString.Split("("c)(1).Remove(CacheExplorerList.SelectedItem.ToString.Split("("c)(1).Length - 1))
-            If selectedfile = ".png" Or selectedfile = ".gif" Or selectedfile = ".jpg" Or selectedfile = ".jpeg" Or selectedfile = ".bmp" Or selectedfile = ".wmf" Then
-                Try
-                    AxWindowsMediaPlayer1.Ctlcontrols.stop()
-                    PlainTextBox.Visible = False
-                    AxWindowsMediaPlayer1.Visible = False
-                    Dim filestrea As New FileStream(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), FileMode.Open, FileAccess.Read)
-                    ImageDisplay.Image = Image.FromStream(filestrea)
-                Catch ex As Exception
-                    ImageDisplay.Image = ImageDisplay.ErrorImage
-                End Try
-                AutoPlayTimer.Stop()
-            ElseIf selectedfile = ".mp4" Or selectedfile = ".webm" Then
-                AxWindowsMediaPlayer1.Visible = True
-                PlainTextBox.Visible = False
-                AxWindowsMediaPlayer1.URL = tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0)
-                If AutoPlayCheck.Checked Then
-                    AutoPlayTimer.Start()
-                Else
-                    AutoPlayTimer.Stop()
-                End If
-            ElseIf selectedfile = ".unknown" Then
-                AxWindowsMediaPlayer1.Ctlcontrols.stop()
-                AxWindowsMediaPlayer1.URL = Nothing
-                PlainTextBox.Visible = True
-                AxWindowsMediaPlayer1.Visible = False
-                Try
-                    If My.Computer.FileSystem.FileExists(Application.StartupPath & "\settings.ini") Then
+                    Try
                         PlainTextBox.LoadFile(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), RichTextBoxStreamType.PlainText)
+                    Catch ex1 As Exception
+                        ImageDisplay.Image = ImageDisplay.ErrorImage
+                    End Try
+                ElseIf OpenTypeCheck.Text = "Image" Then
+                    Try
+                        PlainTextBox.Visible = False
+                        AxWindowsMediaPlayer1.Visible = False
+                        Dim filestrea As New FileStream(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), FileMode.Open, FileAccess.Read)
+                        ImageDisplay.Image = Image.FromStream(filestrea)
+                    Catch ex As Exception
+                        ImageDisplay.Image = ImageDisplay.ErrorImage
+                    End Try
+                ElseIf OpenTypeCheck.Text = "Video" Then
+                    AxWindowsMediaPlayer1.Visible = True
+                    PlainTextBox.Visible = False
+                    AxWindowsMediaPlayer1.URL = tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0)
+                    If AutoPlayCheck.Checked Then
+                        AutoPlayTimer.Start()
                     Else
-                        Dim msg = MsgBox("Warning! Loading .unknown files in plain text may take awhile depending on the file size. Are you sure you want to load it? Press Cancel to load and never show up again.", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNoCancel, "Warning!")
-                        If msg = MsgBoxResult.Yes Then
-                            PlainTextBox.LoadFile(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), RichTextBoxStreamType.PlainText)
-                        ElseIf msg = MsgBoxResult.Cancel Then
-                            My.Computer.FileSystem.WriteAllText(Application.StartupPath & "\settings.ini", "", False)
-                        End If
+                        AutoPlayTimer.Stop()
                     End If
-                Catch ex1 As Exception
-                    ImageDisplay.Image = ImageDisplay.ErrorImage
-                End Try
-                AutoPlayTimer.Stop()
+                End If
+            Else
+                ImageDisplay.Visible = True
+                'MsgBox(ListBox1.SelectedItem.ToString.Split("("c)(1).Remove(ListBox1.SelectedItem.ToString.Split("("c)(1).Length - 1))
+                Dim selectedfile = (CacheExplorerList.SelectedItem.ToString.Split("("c)(1).Remove(CacheExplorerList.SelectedItem.ToString.Split("("c)(1).Length - 1))
+                If selectedfile = ".png" Or selectedfile = ".gif" Or selectedfile = ".jpg" Or selectedfile = ".jpeg" Or selectedfile = ".bmp" Or selectedfile = ".wmf" Then
+                    Try
+                        AxWindowsMediaPlayer1.Ctlcontrols.stop()
+                        PlainTextBox.Visible = False
+                        AxWindowsMediaPlayer1.Visible = False
+                        Dim filestrea As New FileStream(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), FileMode.Open, FileAccess.Read)
+                        ImageDisplay.Image = Image.FromStream(filestrea)
+                    Catch ex As Exception
+                        ImageDisplay.Image = ImageDisplay.ErrorImage
+                    End Try
+                    AutoPlayTimer.Stop()
+                ElseIf selectedfile = ".mp4" Or selectedfile = ".webm" Or selectedfile = ".mpeg" Then
+                    AxWindowsMediaPlayer1.Visible = True
+                    PlainTextBox.Visible = False
+                    AxWindowsMediaPlayer1.URL = tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0)
+                    If AutoPlayCheck.Checked Then
+                        AutoPlayTimer.Start()
+                    Else
+                        AutoPlayTimer.Stop()
+                    End If
+                ElseIf selectedfile = ".unknown" Then
+                    AxWindowsMediaPlayer1.Ctlcontrols.stop()
+                    AxWindowsMediaPlayer1.URL = Nothing
+                    PlainTextBox.Visible = True
+                    AxWindowsMediaPlayer1.Visible = False
+                    Try
+                        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\settings1.ini") Then
+                            PlainTextBox.LoadFile(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), RichTextBoxStreamType.PlainText)
+                        Else
+                            Dim msg = MsgBox("Warning! Loading .unknown files in plain text may take awhile depending on the file size. Are you sure you want to load it? Press Cancel to load and never show up again.", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNoCancel, "Warning!")
+                            If msg = MsgBoxResult.Yes Then
+                                PlainTextBox.LoadFile(tempdiscacheloc & CacheExplorerList.SelectedItem.ToString.Split("("c)(0), RichTextBoxStreamType.PlainText)
+                            ElseIf msg = MsgBoxResult.Cancel Then
+                                My.Computer.FileSystem.WriteAllText(Application.StartupPath & "\settings1.ini", "", False)
+                            End If
+                        End If
+                    Catch ex1 As Exception
+                        ImageDisplay.Image = ImageDisplay.ErrorImage
+                    End Try
+                    AutoPlayTimer.Stop()
+                End If
             End If
-        End If
+        Catch ex As NullReferenceException
+            'Ignore this error. This is due to the user selecting nothing in the listbox (Or at least I think it is).
+        End Try
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ScanCachebutton.Click
@@ -134,7 +148,7 @@ Public Class Form1
             On Error Resume Next
             My.Computer.FileSystem.CopyFile(file, tempdiscacheloc & Path.GetFileName(file), True)
             filenum += 1
-            Label3.Text = "Please wait... Files Copied: " & filenum & " out of " & totalfilenum
+            Label3.Text = "Please wait... Files Copied: " & filenum & " out of " & totalfilenum & ", File Name: " & Path.GetFileNameWithoutExtension(file)
             ProgressBar1.Value = filenum
             Application.DoEvents()
         Next
@@ -150,7 +164,6 @@ Public Class Form1
         TotalFilesLabel.Text = "Total: " & CacheExplorerList.Items.Count
         Label3.Visible = False
         ProgressBar1.Visible = False
-
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles ExportButt.Click
@@ -165,8 +178,6 @@ Public Class Form1
             My.Computer.FileSystem.CopyFile(tempdiscacheloc & item.ToString.Split("("c)(0), FileToSaveAs & GetFileFormat(filestrea))
             filestrea.Close()
         Next
-
-
     End Sub
 
     Public Enum ImageFormat
@@ -180,26 +191,31 @@ Public Class Form1
 
     'Needs improvement
     Public Shared Function GetFileFormat(ByVal stream As FileStream)
-        Dim bmp = Encoding.ASCII.GetBytes("BM")
-        Dim gif = Encoding.ASCII.GetBytes("GIF")
-        Dim mpeg = Encoding.ASCII.GetBytes("ID3")
-        Dim png = New Byte() {137, 80, 78, 71}
-        Dim tiff = New Byte() {73, 73, 42}
-        Dim tiff2 = New Byte() {77, 77, 42}
-        Dim jpeg = New Byte() {255, 216, 255, 224}
-        Dim jpeg2 = New Byte() {255, 216, 255, 225}
-        Dim buffer = New Byte(37) {}
-        stream.Read(buffer, 0, buffer.Length)
-        If bmp.SequenceEqual(buffer.Take(bmp.Length)) Then Return ".bmp"
-        If gif.SequenceEqual(buffer.Take(gif.Length)) Then Return ".gif"
-        If png.SequenceEqual(buffer.Take(png.Length)) Then Return ".png"
-        If tiff.SequenceEqual(buffer.Take(tiff.Length)) Then Return ".tiff"
-        If tiff2.SequenceEqual(buffer.Take(tiff2.Length)) Then Return ".tiff"
-        If jpeg.SequenceEqual(buffer.Take(jpeg.Length)) Then Return ".jpeg"
-        If jpeg2.SequenceEqual(buffer.Take(jpeg2.Length)) Then Return ".jpeg"
-        If mpeg.SequenceEqual(buffer.Take(mpeg.Length)) Then Return ".mpeg"
-        If My.Computer.FileSystem.ReadAllBytes(stream.Name)(6) = Nothing And My.Computer.FileSystem.ReadAllBytes(stream.Name)(10) = Nothing Then Return ".webm"
-        If My.Computer.FileSystem.ReadAllBytes(stream.Name)(0) = Nothing And My.Computer.FileSystem.ReadAllBytes(stream.Name)(1) = Nothing And My.Computer.FileSystem.ReadAllBytes(stream.Name)(2) = Nothing Then Return ".mp4"
+        Try
+            Dim bmp = Encoding.ASCII.GetBytes("BM")
+            Dim gif = Encoding.ASCII.GetBytes("GIF")
+            Dim mpeg = Encoding.ASCII.GetBytes("ID3")
+            Dim png = New Byte() {137, 80, 78, 71}
+            Dim tiff = New Byte() {73, 73, 42}
+            Dim tiff2 = New Byte() {77, 77, 42}
+            Dim jpeg = New Byte() {255, 216, 255, 224}
+            Dim jpeg2 = New Byte() {255, 216, 255, 225}
+            Dim buffer = New Byte(37) {}
+            stream.Read(buffer, 0, buffer.Length)
+            If bmp.SequenceEqual(buffer.Take(bmp.Length)) Then Return ".bmp"
+            If gif.SequenceEqual(buffer.Take(gif.Length)) Then Return ".gif"
+            If png.SequenceEqual(buffer.Take(png.Length)) Then Return ".png"
+            If tiff.SequenceEqual(buffer.Take(tiff.Length)) Then Return ".tiff"
+            If tiff2.SequenceEqual(buffer.Take(tiff2.Length)) Then Return ".tiff"
+            If jpeg.SequenceEqual(buffer.Take(jpeg.Length)) Then Return ".jpeg"
+            If jpeg2.SequenceEqual(buffer.Take(jpeg2.Length)) Then Return ".jpeg"
+            If mpeg.SequenceEqual(buffer.Take(mpeg.Length)) Then Return ".mpeg"
+            If My.Computer.FileSystem.ReadAllBytes(stream.Name)(6) = Nothing And My.Computer.FileSystem.ReadAllBytes(stream.Name)(10) = Nothing Then Return ".webm"
+            If My.Computer.FileSystem.ReadAllBytes(stream.Name)(0) = Nothing And My.Computer.FileSystem.ReadAllBytes(stream.Name)(1) = Nothing And My.Computer.FileSystem.ReadAllBytes(stream.Name)(2) = Nothing Then Return ".mp4"
+        Catch ex As Exception
+            Return ".error"
+        End Try
+
         Return ".unknown"
     End Function
 
@@ -363,4 +379,37 @@ Public Class Form1
 
     End Sub
 
+    Private Sub FileSystemWatcher1_Created(sender As Object, e As FileSystemEventArgs) Handles FileSystemWatcher1.Created
+        Try
+            'For i As Integer = 0 To 1 * 50 'So it doesn't freeze while waiting for file finished being created
+            '    System.Threading.Thread.Sleep(10)
+            '    Application.DoEvents()
+            'Next
+            My.Computer.FileSystem.CopyFile(e.FullPath, tempdiscacheloc & Path.GetFileName(e.FullPath), True)
+            Dim filestrea As New FileStream(e.FullPath, FileMode.Open, FileAccess.Read)
+            CacheExplorerList.Items.Add(Path.GetFileName(e.FullPath) & " (" & GetFileFormat(filestrea) & ")")
+            CacheListBackup.Items.Add(Path.GetFileName(e.FullPath) & " (" & GetFileFormat(filestrea) & ")")
+            filestrea.Close()
+            TotalFilesLabel.Text = "Total: " & CacheExplorerList.Items.Count
+        Catch ex As Exception
+            Try
+                For i As Integer = 0 To 1 * 100 'So it doesn't freeze while waiting for file finished being created
+                    System.Threading.Thread.Sleep(10)
+                    Application.DoEvents()
+                Next
+                My.Computer.FileSystem.CopyFile(e.FullPath, tempdiscacheloc & Path.GetFileName(e.FullPath), True)
+                Dim filestrea As New FileStream(e.FullPath, FileMode.Open, FileAccess.Read)
+                CacheExplorerList.Items.Add(Path.GetFileName(e.FullPath) & " (" & GetFileFormat(filestrea) & ")")
+                CacheListBackup.Items.Add(Path.GetFileName(e.FullPath) & " (" & GetFileFormat(filestrea) & ")")
+                filestrea.Close()
+                TotalFilesLabel.Text = "Total: " & CacheExplorerList.Items.Count
+            Catch ex1 As Exception
+
+            End Try
+        End Try
+    End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        Settings.Show()
+    End Sub
 End Class

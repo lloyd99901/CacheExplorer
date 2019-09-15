@@ -17,3 +17,4 @@ C:\Users\LloydChr\source\repos\DiscordCacheExplorer\DiscordCacheExplorer\obj\Deb
 C:\Users\LloydChr\source\repos\DiscordCacheExplorer\DiscordCacheExplorer\obj\Debug\CacheExplorer.xml
 C:\Users\LloydChr\source\repos\DiscordCacheExplorer\DiscordCacheExplorer\obj\Debug\CacheExplorer.pdb
 C:\Users\LloydChr\source\repos\DiscordCacheExplorer\DiscordCacheExplorer\obj\Debug\DiscordCacheExplorer.ToS.resources
+C:\Users\LloydChr\source\repos\DiscordCacheExplorer\DiscordCacheExplorer\obj\Debug\DiscordCacheExplorer.Settings.resources
